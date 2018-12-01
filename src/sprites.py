@@ -109,7 +109,7 @@ class Debris(ObstacleBase):
 
         ObstacleBase.__init__(self)
 
-        self.image = pygame.image.load("src/resources/obstacles.png").convert_alpha()
+        self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
 
         self.rect = self.image.get_rect()
         self.rect.x = x
