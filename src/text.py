@@ -21,10 +21,8 @@ class TextEngine:
         self.text_surfs.append(text_object)
 
     def get_text(self, content):
-        for text in self.text_surfs:
-            if text.text == content:
-                return text
-        return None
+
+        return [text for text in self.text_surfs if text.text == content]
 
     def get_lines(self):
 

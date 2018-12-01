@@ -38,6 +38,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         write_delay = 0
+        response = 0
 
         while not game_exit:
 
@@ -49,16 +50,22 @@ class Main:
                     if not self.can_progress:
                         if event.key == K_1:
                             self.can_progress = True
-                            self.current_writing.text_append("1")
+                            self.text_engine.get_text(": ")[-1].text_append("1")
+                            response = 1
                         elif event.key == K_2:
                             self.can_progress = True
-                            self.current_writing.text_append("2")
+                            self.text_engine.get_text(": ")[-1].text_append("2")
+                            response = 2
                         elif event.key == K_3:
                             self.can_progress = True
-                            self.current_writing.text_append("3")
+                            self.text_engine.get_text(": ")[-1].text_append("3")
+                            response = 3
 
             if self.story_next and self.can_progress:
-                if not self.story_engine.progress == len(self.story_engine.story):
+                if self.story_engine.progress == len(self.story_engine.story):
+                    self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response])
+                    response = 0
+                else:
                     self.add_to_queue(self.story_engine.story[self.story_engine.progress])
                     self.story_engine.progress += 1
                     self.story_next = False
