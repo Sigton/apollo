@@ -1,8 +1,8 @@
 import pygame
 from pygame.locals import *
-import datetime
 
 from src import text
+from src import story
 
 
 class Main:
@@ -28,28 +28,7 @@ class Main:
 
         self.character_limit = 46
 
-        time = datetime.datetime.now()
-
-        self.initial_story = [
-            ">>> Apollo 18 Command",
-            ">>> System Log",
-            ">>> {}-{}-{}T{}:{}:{}".format(time.year, time.month, time.day,
-                                           time.hour, time.minute, time.second),
-            ">>> Time until lunar interception: 26:40:18",
-            ">>> Performing System check...",
-            ">>>                      ",
-            ">>> All systems functioning.",
-            ">>> Scanning surroundings...",
-            ">>>                      ",
-            ">>> Space debris detected.",
-            ">>> Impact imminent: Human action required.",
-            ">>> Enter action:",
-            "(1) Adjust course to avoid impact.",
-            "(2) Increase velocity to outrun debris.",
-            "(3) Activate shields.",
-            ": ",
-            []
-        ]
+        self.story_engine = story.StoryEngine()
 
         self.story_progress = 0
         self.story_next = False
@@ -77,12 +56,12 @@ class Main:
                             self.can_progress = True
 
             if self.story_next and self.can_progress:
-                if not self.story_progress == len(self.initial_story):
-                    self.add_to_queue(self.initial_story[self.story_progress])
+                if not self.story_progress == len(self.story_engine.story):
+                    self.add_to_queue(self.story_engine.story[self.story_progress])
                     self.story_progress += 1
                     self.story_next = False
 
-                    if self.initial_story[self.story_progress - 1] == ": ":
+                    if self.story_engine.story[self.story_progress - 1] == ": ":
                         self.can_progress = False
 
             if write_delay > 0:
