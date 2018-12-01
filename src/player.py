@@ -104,3 +104,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = self.start_y
         self.xv = 0
         self.yv = 0
+
+    def draw(self, display):
+
+        display.blit(self.image, (self.rect.x, self.rect.y))
