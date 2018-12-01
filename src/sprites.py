@@ -81,19 +81,15 @@ class Flame:
         display.blit(self.image, self.rect.topleft)
 
 
-class Debris(pygame.sprite.Sprite):
+class ObstacleBase(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, speed=10):
+    def __init__(self):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
-
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-
-        self.speed = speed
+        self.image = None
+        self.rect = None
+        self.speed = None
 
     def update(self):
 
@@ -104,6 +100,21 @@ class Debris(pygame.sprite.Sprite):
     def draw(self, display):
 
         display.blit(self.image, self.rect.topleft)
+
+
+class Debris(ObstacleBase):
+
+    def __init__(self, x, y, speed=10):
+
+        ObstacleBase.__init__(self)
+
+        self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.speed = speed
 
 
 class Explosion(pygame.sprite.Sprite):
