@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 
 import random
-import datetime
 
 from src import text
 from src import sprites
@@ -35,7 +34,7 @@ class Main:
         self.clock = pygame.time.Clock()
 
         self.rocket = sprites.Rocket(615, 550)
-        self.debris = pygame.sprite.Group()
+        self.obstacles = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
         self.backgrounds.add(sprites.Background(260, -720))
@@ -53,7 +52,8 @@ class Main:
         self.character_limit = 28
 
         self.play_click = 0
-        self.start_time = datetime.datetime.now()
+
+        self.obstacle_classes = [sprites.Debris, sprites.Meteor]
 
     def run(self):
 
@@ -119,9 +119,9 @@ class Main:
 
             self.backgrounds.update()
             self.rocket.update()
-            self.debris.update()
+            self.obstacles.update()
             self.explosions.update()
-            sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
+            sprite_hit = pygame.sprite.spritecollide(self.rocket, self.obstacles, True)
             for hit in sprite_hit:
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
                 self.rocket.damage += hit.speed
@@ -131,7 +131,7 @@ class Main:
 
             self.backgrounds.draw(self.display)
             self.rocket.draw(self.display)
-            self.debris.draw(self.display)
+            self.obstacles.draw(self.display)
             self.explosions.draw(self.display)
 
             self.display.blit(self.flicker, (0, -flicker_pos))
@@ -185,7 +185,7 @@ class Main:
 
     def create_debris(self, x, y):
 
-        self.debris.add(sprites.Debris(x, y, random.randint(10, 15)))
+        self.obstacles.add(random.choice(self.obstacle_classes)(x, y, random.randint(10, 15)))
 
     def create_explosion(self, x, y):
 
