@@ -8,7 +8,15 @@ class StoryEngine:
         time = datetime.datetime.now()
 
         self.story1 = [
-            "you change course"
+            ">>> Course adjusted.",
+            ">>> Burning thrusters...",
+            ">>>                     ",
+            ">>> Space debris avoided.",
+            ">>> Correct course to original destination?",
+            "(1) Yes.",
+            "(2) No.",
+            ": ",
+            []
         ]
 
         self.story2 = [
