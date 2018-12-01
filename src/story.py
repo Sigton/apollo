@@ -116,7 +116,7 @@ class StoryEngine:
         ]
 
         self.story = self.initial_story
-        self.progress = 14
+        self.progress = 0
 
     def switch_story(self, new_story):
         self.story = new_story
