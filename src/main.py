@@ -9,7 +9,6 @@ class Main:
         pygame.init()
 
         self.display = pygame.display.set_mode((960, 720))
-        self.font = pygame.font.SysFont("Courier", 18)
 
         self.clock = pygame.time.Clock()
 
