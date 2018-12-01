@@ -41,16 +41,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
 
+        if self.yv == 0:
+            self.yv = 1
+
         self.yv += self.gravity
 
-        # temporary collision with bottom of screen: will remove once tiles are made
-        if self.rect.y >= constants.DISPLAY_HEIGHT - self.rect.height and self.yv >= 0:
-            self.yv = 0
-            self.rect.y = constants.DISPLAY_HEIGHT - self.rect.height
-
         self.xv *= self.friction
-
-        if abs(self.xv) <= 0.1:  # this will make animating look a little nicer later
+        if abs(self.xv) < 0.1:
             self.xv = 0
 
         self.rect.x += self.xv
@@ -60,16 +57,17 @@ class Player(pygame.sprite.Sprite):
         for block in block_hit_list:
             if self.xv > 0:
                 self.rect.right = block.rect.left
-            else:
+            if self.xv < 0:
                 self.rect.left = block.rect.right
             self.xv = 0
 
         self.rect.y += self.yv
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platforms, False)
+
         for block in block_hit_list:
             if self.yv > 0:
                 self.rect.bottom = block.rect.top
-            else:
+            if self.yv < 0:
                 self.rect.top = block.rect.bottom
             self.yv = 0
 
@@ -81,7 +79,7 @@ class Player(pygame.sprite.Sprite):
         hit_list = pygame.sprite.spritecollide(self, self.level.platforms, False)
         self.rect.y -= 2
 
-        return True if len(hit_list) or self.rect.bottom >= constants.DISPLAY_HEIGHT else False
+        return True if len(hit_list) else False
 
     def walk_right(self):
 
