@@ -53,7 +53,7 @@ class Main:
 
         self.play_click = 0
 
-        self.obstacle_classes = [sprites.Debris, sprites.Meteor]
+        self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
 

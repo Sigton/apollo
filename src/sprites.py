@@ -165,6 +165,12 @@ class Alien(pygame.sprite.Sprite):
         self.flame.update()
 
         self.rect.x += 3 * self.dir
+
+        if self.rect.right < 300:
+            self.rect.left = 960
+        if self.rect.left > 960:
+            self.rect.right = 300
+
         if self.x_move_counter > 0:
             self.x_move_counter -= 1
         else:
