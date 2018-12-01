@@ -9,6 +9,7 @@ class Main:
         pygame.init()
 
         self.display = pygame.display.set_mode((960, 720))
+        self.font = pygame.font.SysFont("Courier", 18)
 
         self.clock = pygame.time.Clock()
 
@@ -28,7 +29,7 @@ class Main:
             # update code
 
             # draw code
-            self.display.fill((255, 255, 255))
+            self.display.fill((0, 0, 0))
 
             self.clock.tick(60)
             pygame.display.flip()
