@@ -36,6 +36,9 @@ class Main:
         self.rocket = sprites.Rocket(615, 550)
         self.debris = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
+        self.backgrounds = pygame.sprite.Group()
+        self.backgrounds.add(sprites.Background(260, -720))
+        self.backgrounds.add(sprites.Background(260, 0))
 
         self.text_engine = text.TextEngine()
 
@@ -96,6 +99,7 @@ class Main:
 
             flicker_pos = (flicker_pos + 1) % 16
 
+            self.backgrounds.update()
             self.rocket.update()
             self.debris.update()
             self.explosions.update()
@@ -106,6 +110,7 @@ class Main:
             # draw code
             self.display.fill((0, 0, 0))
 
+            self.backgrounds.draw(self.display)
             self.rocket.draw(self.display)
             self.debris.draw(self.display)
             self.explosions.draw(self.display)

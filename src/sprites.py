@@ -84,7 +84,6 @@ class Debris(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
-        self.image.set_colorkey((0, 0, 0))
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -125,3 +124,26 @@ class Explosion(pygame.sprite.Sprite):
     def draw(self, display):
 
         display.blit(self.image, self.rect.topleft)
+
+
+class Background(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.image.load("src/resources/background.png")
+        self.rect = self.image.get_rect()
+
+        self.rect.x = x
+        self.rect.y = y
+
+    def update(self):
+
+        self.rect.y += 1
+
+        if self.rect.top >= 720:
+            self.rect.bottom = 0
+
+    def draw(self, display):
+        display.blit(self.image, (self.rect.x, self.rect.y))
