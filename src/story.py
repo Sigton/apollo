@@ -62,11 +62,11 @@ class StoryEngine:
             ">>> Debris field cleared.",
             ">>> Evaluating damage...",
             ">>>                     ",
-            ">>> Evaluation complete. Show report?",
-            "(1) Yes.",
-            "(2) No.",
-            "(3) Only the important bits.",
-            ": ",
+            ">>> Thruster damaged.",
+            ">>> Immediate action required:",
+            "(1) Jettison thruster.",
+            "(2) Attempt remote thruster repair.",
+            "(3) Abort mission.",
             []
         ]
 
