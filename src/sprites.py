@@ -7,6 +7,8 @@ class Rocket(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
+        self.xv = 0
+
         self.image = pygame.image.load("src/resources/rocket.png")
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -16,6 +18,18 @@ class Rocket(pygame.sprite.Sprite):
 
     def update(self):
         self.flame.update()
+
+        self.xv *= 0.8
+        self.rect.x += self.xv
+        self.flame.rect.x = self.rect.x
+
+    def move_left(self):
+
+        self.xv -= .1
+
+    def move_right(self):
+
+        self.xv += .1
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)

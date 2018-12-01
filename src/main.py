@@ -61,6 +61,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         write_delay = 0
+        moving = 0
 
         while not game_exit:
 
@@ -69,7 +70,15 @@ class Main:
                     game_exit = True
 
                 if event.type == KEYDOWN:
-                    pass
+                    if event.key in (K_LEFT, K_a):
+                        moving = -1
+                    elif event.key in (K_RIGHT, K_d):
+                        moving = 1
+
+            if moving == -1:
+                self.rocket.move_left()
+            if moving == 1:
+                self.rocket.move_right()
 
             if write_delay > 0:
                 write_delay -= 1
@@ -78,6 +87,8 @@ class Main:
                 write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
+
+            self.rocket.update()
             self.debris.update()
             self.explosions.update()
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
@@ -85,6 +96,7 @@ class Main:
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
 
             # draw code
+            self.display.fill((0, 0, 0))
             self.display.blit(self.background, (0, 0))
             self.display.blit(self.flicker, (0, flicker_pos))
             self.text_engine.draw(self.display)
