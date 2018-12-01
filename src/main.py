@@ -49,10 +49,13 @@ class Main:
                     if not self.can_progress:
                         if event.key == K_1:
                             self.can_progress = True
+                            self.current_writing.text_append("1")
                         elif event.key == K_2:
                             self.can_progress = True
+                            self.current_writing.text_append("2")
                         elif event.key == K_3:
                             self.can_progress = True
+                            self.current_writing.text_append("3")
 
             if self.story_next and self.can_progress:
                 if not self.story_engine.progress == len(self.story_engine.story):
