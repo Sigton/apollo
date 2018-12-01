@@ -5,7 +5,7 @@ contains the level classes
 import pygame
 
 from src import constants
-from src import spritesheet
+from src import tile
 
 
 class Level:
@@ -39,3 +39,12 @@ class Level:
 
         for platform in self.platforms:
             platform.draw(display)
+
+    def create_platform(self, tile_num, x, y, layer):
+
+        platform = tile.Platform(tile_num, x, y, layer)
+        self.platforms.add(platform)
+
+    def create_level(self, data):
+
+        pass
