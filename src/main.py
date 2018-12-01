@@ -37,7 +37,7 @@ class Main:
 
         self.rocket = sprites.Rocket(690, 255)
         self.flame = sprites.Flame(690, 455)
-        self.debris = []
+        self.debris = pygame.sprite.Group()
 
         self.text_engine = text.TextEngine()
 
@@ -116,6 +116,7 @@ class Main:
                 d.update()
                 if d.rect.y >= 720:
                     self.debris.remove(d)
+                sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
 
             # draw code
             self.display.blit(self.background, (0, 0))
@@ -176,7 +177,7 @@ class Main:
 
     def create_debris(self, x, y):
 
-        self.debris += [sprites.Debris(x, y)]
+        self.debris.add(sprites.Debris(x, y))
 
 
 if __name__ == "__main__":

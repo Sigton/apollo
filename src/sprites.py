@@ -1,9 +1,11 @@
 import pygame
 
 
-class Rocket:
+class Rocket(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
+
+        pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load("src/resources/rocket.png")
         self.rect = self.image.get_rect()
@@ -45,9 +47,11 @@ class Flame:
         display.blit(self.image, self.rect.topleft)
 
 
-class Debris:
+class Debris(pygame.sprite.Sprite):
 
     def __init__(self, x, y, speed=20):
+
+        pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
         self.image.set_colorkey((0, 0, 0))
