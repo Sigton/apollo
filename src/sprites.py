@@ -43,3 +43,25 @@ class Flame:
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)
+
+
+class Debris:
+
+    def __init__(self, x, y, speed=20):
+
+        self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
+        self.image.set_colorkey((0, 0, 0))
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.speed = speed
+
+    def update(self):
+
+        self.rect.y += self.speed
+
+    def draw(self, display):
+
+        display.blit(self.image, self.rect.topleft)
