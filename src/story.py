@@ -7,6 +7,30 @@ class StoryEngine:
 
         time = datetime.datetime.now()
 
+        self.story4 = [
+            ">>> Filter venting...",
+            ">>>                  ",
+            ">>> ERROR: Filter jammed.",
+            ">>> WARNING: Carbon dioxide levels rising.",
+            ">>> WARNING: Carbon dioxide at toxic levels.",
+            ">>> Human action required:",
+            "(1) Force shuttle venting.",
+            "(2) Evacuate ship.",
+            "(3) Activate emergency filters.",
+            ": ",
+            []
+        ]
+
+        self.story5 = [
+            ">>> WARNING: Pressure building.",
+            ">>> WARNING: Explosion imminent.",
+            ">>> ABANDON SHIP!",
+            ">>> ABANDON SH----------",
+            "------------------------",
+            "------------------------",
+            None
+        ]
+
         self.story1 = [
             ">>> Course adjusted.",
             ">>> Burning thrusters...",
@@ -22,7 +46,7 @@ class StoryEngine:
             "(2) No",
             "(3) Shut off filter",
             ": ",
-            []
+            [self.story4, self.story5]
         ]
 
         self.story2 = [
