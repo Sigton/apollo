@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 
 import random
+import datetime
 
 from src import text
 from src import sprites
@@ -52,6 +53,7 @@ class Main:
         self.character_limit = 28
 
         self.play_click = 0
+        self.start_time = datetime.datetime.now()
 
     def run(self):
 
@@ -71,6 +73,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         moving = 0
+        debris_delay = 360
 
         while not game_exit:
 
@@ -104,6 +107,12 @@ class Main:
             self.write()
 
             flicker_pos = (flicker_pos + 1) % 16
+
+            if debris_delay > 0:
+                debris_delay -= 1
+            else:
+                self.create_debris(random.randint(300, 935), -75)
+                debris_delay = 120
 
             self.backgrounds.update()
             self.rocket.update()
