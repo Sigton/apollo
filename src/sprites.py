@@ -30,9 +30,16 @@ class Flame:
         self.rect.x = x
         self.rect.y = y
 
+        self.timer = 6
+
     def update(self):
-        self.current_image = 1 - self.current_image
-        self.image = self.images[self.current_image]
+
+        if self.timer > 0:
+            self.timer -= 1
+        else:
+            self.current_image = 1 - self.current_image
+            self.image = self.images[self.current_image]
+            self.timer = 6
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)

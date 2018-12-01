@@ -5,6 +5,7 @@ import random
 
 from src import text
 from src import story
+from src import sprites
 
 
 class Main:
@@ -28,6 +29,9 @@ class Main:
         [sound.set_volume(0.3) for sound in self.key_sounds]
 
         self.clock = pygame.time.Clock()
+
+        self.rocket = sprites.Rocket(690, 255)
+        self.flame = sprites.Flame(690, 455)
 
         self.text_engine = text.TextEngine()
 
@@ -96,11 +100,15 @@ class Main:
                 write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
+            self.flame.update()
 
             # draw code
             self.display.blit(self.background, (0, 0))
             self.display.blit(self.flicker, (0, flicker_pos))
             self.text_engine.draw(self.display)
+
+            self.rocket.draw(self.display)
+            self.flame.draw(self.display)
 
             self.clock.tick(60)
             pygame.display.flip()
