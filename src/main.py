@@ -105,7 +105,7 @@ class Main:
                     ('#'*int(self.rocket.xv//2))+('-'*int(7-(self.rocket.xv//2))) if self.rocket.xv > 0 else '-' * 7
                 ))
                 self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
-                    '#'*int(self.rocket.damage/14)+'-'*(15-int(self.rocket.damage/14))))
+                    '#'*int(self.rocket.damage*0.15)+'-'*(15-int(self.rocket.damage*0.15))))
 
             self.write()
 
@@ -124,7 +124,7 @@ class Main:
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.obstacles, True)
             for hit in sprite_hit:
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
-                self.rocket.damage += hit.speed
+                self.rocket.damage += hit.damage_factor
 
             # draw code
             self.display.fill((0, 0, 0))

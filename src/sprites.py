@@ -116,7 +116,7 @@ class Debris(ObstacleBase):
         self.rect.y = y
 
         self.speed = speed
-        self.damage_factor = speed
+        self.damage_factor = speed*0.7
 
 
 class Meteor(ObstacleBase):
@@ -132,7 +132,7 @@ class Meteor(ObstacleBase):
         self.rect.y = y
 
         self.speed = speed
-        self.damage_factor = speed*1.5
+        self.damage_factor = speed
 
 
 class Explosion(pygame.sprite.Sprite):
