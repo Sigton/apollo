@@ -29,6 +29,8 @@ class Main:
         [sound.set_volume(0.3) for sound in self.key_sounds]
 
         self.ambient_sound = pygame.mixer.Sound("src/resources/ambient.wav")
+        self.rocket_sound = pygame.mixer.Sound("src/resources/rocket.wav")
+        self.rocket_sound.set_volume(0.5)
 
         self.clock = pygame.time.Clock()
 
@@ -56,7 +58,6 @@ class Main:
     def run(self):
 
         pygame.mixer.music.play(-1)
-        self.rocket_sound.play(-1)
         self.ambient_sound.play(-1)
 
         game_exit = False
