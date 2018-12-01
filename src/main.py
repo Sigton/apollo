@@ -30,9 +30,9 @@ class Main:
 
         game_exit = False
 
-        self.add_to_queue("Hello and welcome to my amazing text-based game.", 10, 10)
+        self.add_to_queue("Hello and welcome to my amazing text-based game.")
         self.add_to_queue("""This will soon have far, far more content and I hope you look forward to seeing it all
-slowly appear; I know I sure do!""".replace("\n", " "), 10, 42)
+slowly appear; I know I sure do!""".replace("\n", " "))
 
         while not game_exit:
 
@@ -52,17 +52,17 @@ slowly appear; I know I sure do!""".replace("\n", " "), 10, 42)
             self.clock.tick(60)
             pygame.display.flip()
 
-    def add_to_queue(self, new_text, x, y):
+    def add_to_queue(self, new_text):
 
         if len(new_text) > self.character_limit:
             split_text = new_text.split(" ")
             n = len(split_text) - 1
             while len(" ".join(split_text[0:n])) > self.character_limit:
                 n -= 1
-            self.text_queue += [[" ".join(split_text[0:n]), x, y]]
-            self.add_to_queue(" ".join(split_text[n:]), x, y+16)
+            self.text_queue += [[" ".join(split_text[0:n])]]
+            self.add_to_queue(" ".join(split_text[n:]))
         else:
-            self.text_queue += [[new_text, x, y]]
+            self.text_queue += [[new_text]]
 
     def write(self):
 
@@ -72,11 +72,11 @@ slowly appear; I know I sure do!""".replace("\n", " "), 10, 42)
             if not len(self.text_queue):
                 return
 
-            new_text, x, y = self.text_queue.pop(0)
+            new_text = self.text_queue.pop(0)
 
             self.writing = True
             self.to_write = new_text
-            self.current_writing = text.Text(self.to_write[0], x, y)
+            self.current_writing = text.Text(self.to_write[0], 10, ((self.text_engine.get_lines())*18)+4)
             self.writing_progress = 0
 
             self.text_engine.add_text(self.current_writing)
