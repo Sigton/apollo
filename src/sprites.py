@@ -12,8 +12,14 @@ class Rocket(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+        self.flame = Flame(x, y+200)
+
+    def update(self):
+        self.flame.update()
+
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)
+        self.flame.draw(display)
 
 
 class Flame:

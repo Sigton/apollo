@@ -4,7 +4,6 @@ from pygame.locals import *
 import random
 
 from src import text
-from src import story
 from src import sprites
 
 
@@ -36,7 +35,6 @@ class Main:
         self.clock = pygame.time.Clock()
 
         self.rocket = sprites.Rocket(690, 255)
-        self.flame = sprites.Flame(690, 455)
         self.debris = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
 
@@ -49,11 +47,13 @@ class Main:
 
         self.text_queue = []
 
-        self.character_limit = 46
+        self.character_limit = 28
 
         self.play_click = 0
 
     def run(self):
+
+        self.add_to_queue(">>> Apollo 18 System Info")
 
         pygame.mixer.music.play(-1)
         self.ambient_sound.play(-1)
@@ -78,7 +78,6 @@ class Main:
                 write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
-            self.flame.update()
             self.debris.update()
             self.explosions.update()
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
@@ -91,7 +90,6 @@ class Main:
             self.text_engine.draw(self.display)
 
             self.rocket.draw(self.display)
-            self.flame.draw(self.display)
             self.debris.draw(self.display)
             self.explosions.draw(self.display)
 
