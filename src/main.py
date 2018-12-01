@@ -80,6 +80,9 @@ class Main:
         self.current_level.draw(self.display)
         self.player.draw(self.display)
 
+        self.clock.tick(60)
+        pygame.display.flip()
+
 
 if __name__ == "__main__":
 
