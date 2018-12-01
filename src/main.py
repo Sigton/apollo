@@ -31,10 +31,10 @@ class Main:
 
         game_exit = False
         flicker_pos = 0
+        write_delay = 0
 
-        self.add_to_queue("Hello and welcome to my amazing text-based game.")
-        self.add_to_queue("""This will soon have far, far more content and I hope you look forward to seeing it all
-slowly appear; I know I sure do!""".replace("\n", " "))
+        self.add_to_queue("In this game you are going to be making many decisions.")
+        self.add_to_queue("To make a decision, you will have to enter either 1, 2, or 3. You got it?")
 
         while not game_exit:
 
@@ -45,7 +45,11 @@ slowly appear; I know I sure do!""".replace("\n", " "))
                 if event.type == KEYDOWN:
                     pass
 
-            self.write()
+            if write_delay > 0:
+                write_delay -= 1
+            else:
+                self.write()
+                write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
 
@@ -64,10 +68,10 @@ slowly appear; I know I sure do!""".replace("\n", " "))
             n = len(split_text) - 1
             while len(" ".join(split_text[0:n])) > self.character_limit:
                 n -= 1
-            self.text_queue += [[" ".join(split_text[0:n])]]
+            self.text_queue += [" ".join(split_text[0:n])]
             self.add_to_queue(" ".join(split_text[n:]))
         else:
-            self.text_queue += [[new_text]]
+            self.text_queue += [new_text]
 
     def write(self):
 
