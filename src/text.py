@@ -26,6 +26,10 @@ class TextEngine:
                 return text
         return None
 
+    def get_lines(self):
+
+        return len(self.text_surfs)
+
     def draw(self, display):
 
         for surf in self.text_surfs:
