@@ -62,8 +62,8 @@ class Main:
                             response = 3
 
             if self.story_next and self.can_progress:
-                if self.story_engine.progress == len(self.story_engine.story):
-                    self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response])
+                if self.story_engine.progress == len(self.story_engine.story)-1:
+                    self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response-1])
                     response = 0
 
                 self.add_to_queue(self.story_engine.story[self.story_engine.progress])
