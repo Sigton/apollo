@@ -30,7 +30,7 @@ class Main:
 
         time = datetime.datetime.now()
 
-        self.story = [
+        self.initial_story = [
             ">>> Apollo 18 Command",
             ">>> System Log",
             ">>> {}-{}-{}T{}:{}:{}".format(time.year, time.month, time.day,
@@ -47,7 +47,8 @@ class Main:
             "(1) Adjust course to avoid impact.",
             "(2) Increase velocity to outrun debris.",
             "(3) Activate shields.",
-            ": "
+            ": ",
+            []
         ]
 
         self.story_progress = 0
@@ -67,15 +68,21 @@ class Main:
                     game_exit = True
 
                 if event.type == KEYDOWN:
-                    pass
+                    if not self.can_progress:
+                        if event.key == K_1:
+                            self.can_progress = True
+                        elif event.key == K_2:
+                            self.can_progress = True
+                        elif event.key == K_3:
+                            self.can_progress = True
 
             if self.story_next and self.can_progress:
-                if not self.story_progress == len(self.story):
-                    self.add_to_queue(self.story[self.story_progress])
+                if not self.story_progress == len(self.initial_story):
+                    self.add_to_queue(self.initial_story[self.story_progress])
                     self.story_progress += 1
                     self.story_next = False
 
-                    if self.story[self.story_progress-1] == ": ":
+                    if self.initial_story[self.story_progress - 1] == ": ":
                         self.can_progress = False
 
             if write_delay > 0:
