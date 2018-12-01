@@ -55,6 +55,7 @@ class Main:
 
         self.story_next = False
         self.can_progress = True
+        self.stop = False
 
         self.play_click = 0
 
@@ -89,7 +90,11 @@ class Main:
                             self.text_engine.get_text(": ")[-1].text_append("3")
                             response = 3
 
-            if self.story_next and self.can_progress:
+            if self.story_next and self.can_progress and not self.stop:
+                if self.story_engine.story[self.story_engine.progress] is None:
+                    self.stop = True
+                    continue
+
                 if self.story_engine.progress == len(self.story_engine.story)-1:
                     self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response-1])
                     response = 0
@@ -105,11 +110,12 @@ class Main:
                 if self.story_engine.story[self.story_engine.progress - 1] == ": ":
                     self.can_progress = False
 
-            if write_delay > 0:
-                write_delay -= 1
-            else:
-                self.write()
-                write_delay = 1
+            if not self.stop:
+                if write_delay > 0:
+                    write_delay -= 1
+                else:
+                    self.write()
+                    write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
             self.flame.update()
