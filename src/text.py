@@ -2,6 +2,7 @@ import pygame
 
 FONT = None
 WHITE = (255, 255, 255)
+TEXT_COLOUR = (70, 168, 155)
 
 
 class TextEngine:
@@ -11,7 +12,7 @@ class TextEngine:
         self.text_surfs = []
 
         global FONT
-        FONT = pygame.font.SysFont("Courier", 18)
+        FONT = pygame.font.SysFont("Courier", 16)
 
     def create_text(self, text, x, y, center=False):
         self.text_surfs.append(Text(text, x, y, center))
@@ -37,7 +38,7 @@ class Text:
 
         self.text = text
 
-        self.image = FONT.render(text, False, WHITE)
+        self.image = FONT.render(text, True, TEXT_COLOUR)
         self.rect = self.image.get_rect()
         if center:
             self.rect.center = (x, y)
@@ -49,7 +50,7 @@ class Text:
         self.text = text
 
         old_pos = self.rect.center if center else self.rect.topleft
-        self.image = FONT.render(text, False, WHITE)
+        self.image = FONT.render(text, True, TEXT_COLOUR)
         self.rect = self.image.get_rect()
         if center:
             self.rect.center = old_pos

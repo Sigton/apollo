@@ -11,6 +11,7 @@ class Main:
         pygame.init()
 
         self.display = pygame.display.set_mode((960, 720))
+        self.background = pygame.image.load("src/resources/background.png")
 
         self.clock = pygame.time.Clock()
 
@@ -34,13 +35,10 @@ class Main:
                 if event.type == KEYDOWN:
                     pass
 
-            if self.writing:
-                pass
-            else:
-                self.write("Hello", 10, 10)
+            self.write("Hello and welcome to my amazing text-based game", 10, 10)
 
             # draw code
-            self.display.fill((0, 0, 0))
+            self.display.blit(self.background, (0, 0))
             self.text_engine.draw(self.display)
 
             self.clock.tick(60)
