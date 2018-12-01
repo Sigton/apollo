@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import datetime
 
 from src import text
 
@@ -27,14 +28,22 @@ class Main:
 
         self.character_limit = 46
 
+        time = datetime.datetime.now()
+
+        self.story = [
+            ">>> Apollo 18 Command >>> System Log >>> {}-{}-{}T{}:{}:{}".format(time.year, time.month, time.day,
+                                                                                time.hour, time.minute, time.second),
+            ">>> Time until lunar interception >>> 26:40:18",
+            ">>> Performing System check...",
+            ">>> All systems functioning.",
+            ">>> Scanning surroundings..."
+        ]
+
     def run(self):
 
         game_exit = False
         flicker_pos = 0
         write_delay = 0
-
-        self.add_to_queue("In this game you are going to be making many decisions.")
-        self.add_to_queue("To make a decision, you will have to enter either 1, 2, or 3. You got it?")
 
         while not game_exit:
 
