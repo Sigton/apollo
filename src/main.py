@@ -31,13 +31,28 @@ class Main:
         time = datetime.datetime.now()
 
         self.story = [
-            ">>> Apollo 18 Command >>> System Log >>> {}-{}-{}T{}:{}:{}".format(time.year, time.month, time.day,
-                                                                                time.hour, time.minute, time.second),
-            ">>> Time until lunar interception >>> 26:40:18",
+            ">>> Apollo 18 Command",
+            ">>> System Log",
+            ">>> {}-{}-{}T{}:{}:{}".format(time.year, time.month, time.day,
+                                           time.hour, time.minute, time.second),
+            ">>> Time until lunar interception: 26:40:18",
             ">>> Performing System check...",
+            ">>>                      ",
             ">>> All systems functioning.",
-            ">>> Scanning surroundings..."
+            ">>> Scanning surroundings...",
+            ">>>                      ",
+            ">>> Space debris detected.",
+            ">>> Impact imminent: Human action required.",
+            ">>> Enter action:",
+            "(1) Adjust course to avoid impact.",
+            "(2) Increase velocity to outrun debris.",
+            "(3) Activate shields.",
+            ": "
         ]
+
+        self.story_progress = 0
+        self.story_next = False
+        self.can_progress = True
 
     def run(self):
 
@@ -53,6 +68,15 @@ class Main:
 
                 if event.type == KEYDOWN:
                     pass
+
+            if self.story_next and self.can_progress:
+                if not self.story_progress == len(self.story):
+                    self.add_to_queue(self.story[self.story_progress])
+                    self.story_progress += 1
+                    self.story_next = False
+
+                    if self.story[self.story_progress-1] == ": ":
+                        self.can_progress = False
 
             if write_delay > 0:
                 write_delay -= 1
@@ -88,6 +112,8 @@ class Main:
             # create new writing
 
             if not len(self.text_queue):
+                if not self.story_next:
+                    self.story_next = True
                 return
 
             new_text = self.text_queue.pop(0)
