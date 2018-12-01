@@ -16,6 +16,10 @@ class Rocket(pygame.sprite.Sprite):
 
         self.flame = Flame(x, y+100)
 
+        self.fuel = 100
+        self.damage = 0
+        self.oxygen = 100
+
     def update(self):
         self.flame.update()
 
