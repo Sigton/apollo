@@ -44,7 +44,24 @@ class StoryEngine:
         ]
 
         self.story3 = [
-            "you turn on shields"
+            ">>> Activating shields...",
+            ">>>          ",
+            ">>> Shields activated.",
+            ">>> Prepare for impact.",
+            ">>> Shields at 81%.",
+            ">>> Shields at 64%",
+            ">>> Shields at 49%",
+            ">>> Shields at 36%",
+            ">>> Shields at 25%",
+            ">>> Debris field cleared.",
+            ">>> Evaluating damage...",
+            ">>>                     ",
+            ">>> Evaluation complete. Show report?",
+            "(1) Yes.",
+            "(2) No.",
+            "(3) Only the important bits.",
+            ": ",
+            []
         ]
 
         self.initial_story = [
