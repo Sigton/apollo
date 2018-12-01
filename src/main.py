@@ -69,28 +69,28 @@ class Main:
                     elif event.key in (K_SPACE, K_w, K_UP):
                         jump = False
 
-        obstacle_hits = pygame.sprite.spritecollide(player, self.current_level.obstalcles, False)
-        if len(obstacle_hits):
-            self.player.reset()
+            obstacle_hits = pygame.sprite.spritecollide(self.player, self.current_level.obstacles, False)
+            if len(obstacle_hits):
+                self.player.reset()
 
-        if run == 1:
-            self.player.walk_right()
-        elif run == -1:
-            self.player.walk_left()
+            if run == 1:
+                self.player.walk_right()
+            elif run == -1:
+                self.player.walk_left()
 
-        if jump:
-            self.player.jump()
+            if jump:
+                self.player.jump()
 
-        # Updating
-        self.player.update()
-        self.current_level.update()
+            # Updating
+            self.player.update()
+            self.current_level.update()
 
-        # Drawing
-        self.current_level.draw(self.display)
-        self.player.draw(self.display)
+            # Drawing
+            self.current_level.draw(self.display)
+            self.player.draw(self.display)
 
-        self.clock.tick(60)
-        pygame.display.flip()
+            self.clock.tick(60)
+            pygame.display.flip()
 
 
 if __name__ == "__main__":

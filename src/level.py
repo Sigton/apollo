@@ -38,10 +38,12 @@ class Level:
     def draw(self, display):
 
         display.fill(constants.BLACK)
-        display.blit(self.background)
+        display.blit(self.background, (0, 0))
 
         for platform in self.platforms:
             platform.draw(display)
+        for obstacle in self.obstacles:
+            obstacle.draw(display)
 
     def create_platform(self, tile_num, x, y, layer):
 
