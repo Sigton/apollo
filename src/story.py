@@ -91,6 +91,7 @@ class StoryEngine:
             "(1) Jettison thruster.",
             "(2) Attempt remote thruster repair.",
             "(3) Abort mission.",
+            ": ",
             []
         ]
 

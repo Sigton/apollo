@@ -20,6 +20,10 @@ class TextEngine:
     def add_text(self, text_object):
         self.text_surfs.append(text_object)
 
+        if self.get_lines() > 36:  # scroll up
+            pass
+
+
     def get_text(self, content):
 
         return [text for text in self.text_surfs if text.text == content]

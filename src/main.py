@@ -123,7 +123,7 @@ class Main:
             self.explosions.update()
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
             for hit in sprite_hit:
-                self.create_explosion(hit.rect.centrex, hit.rect.bottom)
+                self.create_explosion(hit.rect.centerx, hit.rect.bottom)
 
             # draw code
             self.display.blit(self.background, (0, 0))
