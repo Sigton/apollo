@@ -16,7 +16,6 @@ class Main:
         pygame.init()
 
         self.display = pygame.display.set_mode((960, 720))
-        self.background = pygame.image.load("src/resources/background.png")
         self.flicker = pygame.image.load("src/resources/flicker.png")
 
         pygame.mixer.music.load("src/resources/music.mp3")
@@ -106,7 +105,6 @@ class Main:
 
             # draw code
             self.display.fill((0, 0, 0))
-            self.display.blit(self.background, (0, 0))
 
             self.rocket.draw(self.display)
             self.debris.draw(self.display)
