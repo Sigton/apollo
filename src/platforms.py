@@ -20,7 +20,7 @@ class Platform(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = spritesheet.SpriteSheet("src/resources/terrain.png")
+        sprite_sheet = spritesheet.SpriteSheet("src/resources/sprites/terrain.png")
 
         self.image = sprite_sheet.get_image(spritesheetdata[0],
                                             spritesheetdata[1],
