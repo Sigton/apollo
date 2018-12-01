@@ -24,7 +24,7 @@ class Main:
                            pygame.mixer.Sound("src/resources/keypress2.wav"),
                            pygame.mixer.Sound("src/resources/keypress3.wav"),
                            pygame.mixer.Sound("src/resources/keypress4.wav")]
-        [sound.set_volume(0.3) for sound in self.key_sounds]
+        [sound.set_volume(0.1) for sound in self.key_sounds]
 
         self.ambient_sound = pygame.mixer.Sound("src/resources/ambient.wav")
         self.rocket_sound = pygame.mixer.Sound("src/resources/rocket.wav")
