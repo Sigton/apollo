@@ -22,6 +22,10 @@ class Main:
         self.to_write = ""
         self.writing_progress = 0
 
+        self.text_queue = []
+
+        self.character_limit = 46
+
     def run(self):
 
         game_exit = False
@@ -48,6 +52,14 @@ class Main:
 
         if self.current_writing is None:
             # create new writing
+
+            if len(new_text) > self.character_limit:
+                split_text = new_text.split(" ")
+                n = len(split_text)-1
+                while len(" ".join(split_text[0:n])) > self.character_limit:
+                    n -= 1
+                new_text = " ".join(split_text[0:n])
+
             self.writing = True
             self.to_write = new_text
             self.current_writing = text.Text(self.to_write[0], x, y)
