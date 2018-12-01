@@ -12,7 +12,7 @@ writes/loads terrain to the json files
 class LevelData:
 
     save_file = None
-    load_dir = None
+    load_files = None
 
     tile_colours = [0, 255]
 
@@ -20,7 +20,8 @@ class LevelData:
 
         self.save_file = savefile
 
-        self.load_dir = os.listdir(loadfile)
+        self.load_dir = loadfile
+        self.load_files = os.listdir(loadfile)
 
         self.level_data = []
 
@@ -35,9 +36,8 @@ class LevelData:
 
     def write_data(self):
 
-        for file in self.load_dir:
-
-            pix_array = pygame.PixelArray(pygame.image.load(file))
+        for file in self.load_files:
+            pix_array = pygame.PixelArray(pygame.image.load(os.path.join(self.load_dir, file)))
 
             x = 0
             for column in pix_array:
@@ -52,10 +52,10 @@ class LevelData:
                     if pixel in self.tile_colours:
                         n = 0
                         for color in self.tile_colours:
-                            n += 1
                             if pixel == color:
                                 tile_data['tile'] = n
                                 tile_data['type'] = constants.TILE_TYPES[n]
+                            n += 1
 
                     else:
                         tile_data['tile'] = 0
