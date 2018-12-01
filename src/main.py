@@ -31,6 +31,7 @@ class Main:
         self.ambient_sound = pygame.mixer.Sound("src/resources/ambient.wav")
         self.rocket_sound = pygame.mixer.Sound("src/resources/rocket.wav")
         self.rocket_sound.set_volume(0.5)
+        self.ambient_sound.set_volume(0.5)
 
         self.clock = pygame.time.Clock()
 
