@@ -90,6 +90,7 @@ class ObstacleBase(pygame.sprite.Sprite):
         self.image = None
         self.rect = None
         self.speed = None
+        self.damage_factor = None
 
     def update(self):
 
@@ -115,6 +116,23 @@ class Debris(ObstacleBase):
         self.rect.y = y
 
         self.speed = speed
+        self.damage_factor = speed
+
+
+class Meteor(ObstacleBase):
+
+    def __init__(self, x, y, speed=7):
+
+        ObstacleBase.__init__(self)
+
+        self.image = pygame.image.load("src/resources/meteor.png").convert_alpha()
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.speed = speed
+        self.damage_factor = speed*1.5
 
 
 class Explosion(pygame.sprite.Sprite):
