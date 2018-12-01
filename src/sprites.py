@@ -65,6 +65,8 @@ class Debris(pygame.sprite.Sprite):
     def update(self):
 
         self.rect.y += self.speed
+        if self.rect.y >= 720:
+            self.kill()
 
     def draw(self, display):
 

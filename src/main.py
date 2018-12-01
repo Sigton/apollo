@@ -114,6 +114,7 @@ class Main:
             flicker_pos = (flicker_pos + 1) % 16
             self.flame.update()
             self.debris.update()
+            self.explosions.update()
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
             for hit in sprite_hit:
                 self.create_explosion(hit.rect.centrex, hit.rect.bottom)
