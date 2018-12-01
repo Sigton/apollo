@@ -12,6 +12,7 @@ class Main:
 
         self.display = pygame.display.set_mode((960, 720))
         self.background = pygame.image.load("src/resources/background.png")
+        self.flicker = pygame.image.load("src/resources/flicker.png")
 
         self.clock = pygame.time.Clock()
 
@@ -29,6 +30,7 @@ class Main:
     def run(self):
 
         game_exit = False
+        flicker_pos = 0
 
         self.add_to_queue("Hello and welcome to my amazing text-based game.")
         self.add_to_queue("""This will soon have far, far more content and I hope you look forward to seeing it all
@@ -45,8 +47,11 @@ slowly appear; I know I sure do!""".replace("\n", " "))
 
             self.write()
 
+            flicker_pos = (flicker_pos + 1) % 16
+
             # draw code
             self.display.blit(self.background, (0, 0))
+            self.display.blit(self.flicker, (0, flicker_pos))
             self.text_engine.draw(self.display)
 
             self.clock.tick(60)
