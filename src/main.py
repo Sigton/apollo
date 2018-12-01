@@ -104,6 +104,8 @@ class Main:
                     ('#'*int(abs(self.rocket.xv)//2))if self.rocket.xv < 0else'-'*7,
                     ('#'*int(self.rocket.xv//2))+('-'*int(7-(self.rocket.xv//2))) if self.rocket.xv > 0 else '-' * 7
                 ))
+                self.text_engine.text_surfs[3].set_text(">   Fuel   |{}|".format(
+                    '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
                 self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
                     '#'*int(self.rocket.damage*0.15)+'-'*(15-int(self.rocket.damage*0.15))))
 
