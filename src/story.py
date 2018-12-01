@@ -12,9 +12,15 @@ class StoryEngine:
             ">>> Burning thrusters...",
             ">>>                     ",
             ">>> Space debris avoided.",
-            ">>> Correct course to original destination?",
-            "(1) Yes.",
-            "(2) No.",
+            ">>> Correcting course to original destination...",
+            ">>>                     ",
+            ">>> Course corrected.",
+            ">>> Performing systems analysis...",
+            ">>> Warning: Space dust present in air filter.",
+            ">>> Vent filter?",
+            "(1) Yes",
+            "(2) No",
+            "(3) Shut off filter",
             ": ",
             []
         ]
