@@ -19,6 +19,8 @@ class Level:
 
         # solid things
         self.platforms = pygame.sprite.Group()
+        # deadly things
+        self.obstacles = pygame.sprite.Group()
 
         self.player = player
 
@@ -44,6 +46,11 @@ class Level:
 
         platform = tile.Platform(tile_num, x, y, layer)
         self.platforms.add(platform)
+
+    def create_obstacle(self, tile_num, x, y, layer):
+
+        platform = tile.Platform(tile_num, x, y, layer)
+        self.obstacles.add(platform)
 
     def create_level(self, data):
 
