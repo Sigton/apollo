@@ -1,6 +1,7 @@
 import pygame
 
 from src import constants
+from src import player
 
 """
 main.py
@@ -23,6 +24,17 @@ class Main:
         pygame.display.set_caption("game name")
 
         self.clock = pygame.time.Clock()
+
+        self.player = player.Player()
+
+        self.level_list = []
+
+        # populate level list
+
+        self.current_level_num = 0
+        self.current_level = self.level_list[self.current_level_num](self.player)
+
+        self.player.level = self.current_level
 
         self.game_exit = False
 

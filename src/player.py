@@ -25,9 +25,9 @@ class Player(pygame.sprite.Sprite):
         self.speed = constants.PLAYER_SPEED
         self.jump_height = constants.PLAYER_JUMP_HEIGHT
 
-        sprite_sheet = "PLAYER SPRITE SHEET GOES HERE"
+        sprite_sheet = spritesheet.SpriteSheet("src/resources/sprites/player.png")
 
-        self.image = None  # for now
+        self.image = sprite_sheet.get_image(0, 0, 32, 64)
 
         self.rect = self.image.get_rect()
 
