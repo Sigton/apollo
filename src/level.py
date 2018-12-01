@@ -5,7 +5,7 @@ contains the level classes
 import pygame
 
 from src import constants
-from src import tile
+from src import platforms
 
 
 class Level:
@@ -44,14 +44,21 @@ class Level:
 
     def create_platform(self, tile_num, x, y, layer):
 
-        platform = tile.Platform(tile_num, x, y, layer)
+        platform = platforms.Platform(tile_num, x, y, layer)
         self.platforms.add(platform)
 
     def create_obstacle(self, tile_num, x, y, layer):
 
-        platform = tile.Platform(tile_num, x, y, layer)
+        platform = platforms.Platform(tile_num, x, y, layer)
         self.obstacles.add(platform)
 
     def create_level(self, data):
 
-        pass
+        layer = 0
+        n = 0
+        for tile in data:
+            position = tile[0]
+            tile_data = tile[1]
+
+            if tile_data['type'] == "S":
+                self.create_platform(platforms.platforms[tile_data['tile']], position[0]*32, position[1]*32, layer)
