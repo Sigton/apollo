@@ -100,7 +100,8 @@ class Main:
 
             if self.text_engine.get_lines() > 6:
                 self.text_engine.text_surfs[2].set_text("> Velocity |{}#{}|".format(
-                    ('-'*(7-int(abs(self.rocket.xv)//2)))+('#'*int(abs(self.rocket.xv)//2)) if self.rocket.xv < 0 else '-'*7,
+                    ('-'*(7-int(abs(self.rocket.xv)//2))) +
+                    ('#'*int(abs(self.rocket.xv)//2))if self.rocket.xv < 0else'-'*7,
                     ('#'*int(self.rocket.xv//2))+('-'*int(7-(self.rocket.xv//2))) if self.rocket.xv > 0 else '-' * 7
                 ))
 
@@ -181,7 +182,7 @@ class Main:
 
     def create_debris(self, x, y):
 
-        self.debris.add(sprites.Debris(x, y))
+        self.debris.add(sprites.Debris(x, y, random.randint(10, 15)))
 
     def create_explosion(self, x, y):
 

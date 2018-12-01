@@ -79,7 +79,7 @@ class Flame:
 
 class Debris(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, speed=20):
+    def __init__(self, x, y, speed=10):
 
         pygame.sprite.Sprite.__init__(self)
 
