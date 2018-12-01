@@ -69,3 +69,27 @@ class Debris(pygame.sprite.Sprite):
     def draw(self, display):
 
         display.blit(self.image, self.rect.topleft)
+
+
+class Explosion(pygame.sprite.Sprite):
+
+    def __init__(self, x, y, lifetime=15):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.image.load("src/resources/explosion.png")
+        self.rect = self.image.get_rect()
+
+        self.rect.center = (x, y)
+
+        self.lifetime = lifetime
+
+    def update(self):
+
+        self.lifetime -= 1
+        if self.lifetime <= 0:
+            self.kill()
+
+    def draw(self, display):
+
+        display.blit(self.image, self.rect.topleft)
