@@ -41,21 +41,31 @@ class Main:
 
             # draw code
             self.display.fill((0, 0, 0))
+            self.text_engine.draw(self.display)
 
             self.clock.tick(60)
             pygame.display.flip()
 
-    def write(self, text, x, y):
+    def write(self, new_text, x, y):
 
         if self.current_writing is None:
             # create new writing
-            pass
+            self.writing = True
+            self.to_write = new_text
+            self.current_writing = text.Text(self.to_write[0], x, y)
+            self.writing_progress = 0
+
+            self.text_engine.add_text(self.current_writing)
+
         elif self.writing_progress == len(self.to_write)-1:
             # end writing
-            pass
+            self.writing = False
+            self.to_write = ""
+            self.current_writing = None
         else:
             # write new letter
-            pass
+            self.writing_progress += 1
+            self.current_writing.text_append(self.to_write[self.writing_progress])
 
 
 if __name__ == "__main__":

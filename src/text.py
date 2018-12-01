@@ -1,6 +1,6 @@
 import pygame
 
-FONT = pygame.font.SysFont("Courier", 18)
+FONT = None
 WHITE = (255, 255, 255)
 
 
@@ -9,6 +9,9 @@ class TextEngine:
     def __init__(self):
 
         self.text_surfs = []
+
+        global FONT
+        FONT = pygame.font.SysFont("Courier", 18)
 
     def create_text(self, text, x, y, center=False):
         self.text_surfs.append(Text(text, x, y, center))
