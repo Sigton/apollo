@@ -82,7 +82,7 @@ class Level01(Level):
 
         self.layer_range = 1
 
-        level = terrain.LevelData(save_file, tile_dir, "level1")
+        level = terrain.LevelData(save_file, tile_dir)
         if write_data:
             level_data = level.write_data()
         else:

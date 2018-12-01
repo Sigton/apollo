@@ -3,6 +3,7 @@ from pygame.locals import *
 
 from src import constants
 from src import player
+from src import level
 
 """
 main.py
@@ -28,7 +29,7 @@ class Main:
 
         self.player = player.Player(32, 608)
 
-        self.level_list = []
+        self.level_list = [level.Level01]
 
         # populate level list
 

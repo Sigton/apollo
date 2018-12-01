@@ -16,7 +16,7 @@ class LevelData:
 
     tile_colours = [0, 255]
 
-    def __init__(self, savefile, loadfile, level):
+    def __init__(self, savefile, loadfile):
 
         self.save_file = savefile
 
@@ -37,7 +37,7 @@ class LevelData:
 
         for file in self.load_dir:
 
-            pix_array = pygame.PixelArray(file)
+            pix_array = pygame.PixelArray(pygame.image.load(file))
 
             x = 0
             for column in pix_array:
