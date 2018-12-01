@@ -28,6 +28,10 @@ class Main:
                            pygame.mixer.Sound("src/resources/keypress4.wav")]
         [sound.set_volume(0.3) for sound in self.key_sounds]
 
+        self.rocket_sound = pygame.mixer.Sound("src/resources/rocket.wav")
+        self.rocket_sound.set_volume(0.01)
+        self.ambient_sound = pygame.mixer.Sound("src/resources/ambient.wav")
+
         self.clock = pygame.time.Clock()
 
         self.rocket = sprites.Rocket(690, 255)
@@ -54,6 +58,8 @@ class Main:
     def run(self):
 
         pygame.mixer.music.play(-1)
+        self.rocket_sound.play(-1)
+        self.ambient_sound.play(-1)
 
         game_exit = False
         flicker_pos = 0
