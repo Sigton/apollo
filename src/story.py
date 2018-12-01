@@ -7,6 +7,18 @@ class StoryEngine:
 
         time = datetime.datetime.now()
 
+        self.story1 = [
+            "you change course"
+        ]
+
+        self.story2 = [
+            "you go faster"
+        ]
+
+        self.story3 = [
+            "you turn on shields"
+        ]
+
         self.initial_story = [
             ">>> Apollo 18 Command",
             ">>> System Log",
@@ -16,7 +28,7 @@ class StoryEngine:
             ">>> Performing System check...",
             ">>>                      ",
             ">>> All systems functioning.",
-            ">>> Scanning surroundings...",
+            ">>> Scanning surrounding environment...",
             ">>>                      ",
             ">>> Space debris detected.",
             ">>> Impact imminent: Human action required.",
@@ -25,11 +37,11 @@ class StoryEngine:
             "(2) Increase velocity to outrun debris.",
             "(3) Activate shields.",
             ": ",
-            []
+            [self.story1, self.story2, self.story3]
         ]
 
         self.story = self.initial_story
-        self.progress = 0
+        self.progress = 10
 
     def switch_story(self, new_story):
         self.story = new_story

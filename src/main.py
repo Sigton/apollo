@@ -65,13 +65,13 @@ class Main:
                 if self.story_engine.progress == len(self.story_engine.story):
                     self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response])
                     response = 0
-                else:
-                    self.add_to_queue(self.story_engine.story[self.story_engine.progress])
-                    self.story_engine.progress += 1
-                    self.story_next = False
 
-                    if self.story_engine.story[self.story_engine.progress - 1] == ": ":
-                        self.can_progress = False
+                self.add_to_queue(self.story_engine.story[self.story_engine.progress])
+                self.story_engine.progress += 1
+                self.story_next = False
+
+                if self.story_engine.story[self.story_engine.progress - 1] == ": ":
+                    self.can_progress = False
 
             if write_delay > 0:
                 write_delay -= 1
