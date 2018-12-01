@@ -62,3 +62,9 @@ class Level:
 
             if tile_data['type'] == "S":
                 self.create_platform(platforms.platforms[tile_data['tile']], position[0]*32, position[1]*32, layer)
+            elif tile_data['type'] == "O":
+                self.create_obstacle(platforms.platforms[tile_data['tile']], position[0] * 32, position[1] * 32, layer)
+
+            n += 1
+            if n % 690 == 0:
+                layer += 1
