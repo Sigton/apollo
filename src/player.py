@@ -13,12 +13,15 @@ class Player(pygame.sprite.Sprite):
     # will contain a level class that we use to check for collision
     level = None
 
-    def __init__(self):
+    def __init__(self, x, y):
 
         pygame.sprite.Sprite.__init__(self)
 
         self.xv = 0
         self.yv = 0
+
+        self.start_x = x
+        self.start_y = y
 
         self.gravity = constants.PLAYER_GRAVITY
         self.friction = constants.PLAYER_FRICTION
@@ -32,6 +35,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.direction = "R"
         self.touching_ground = False
+
+        self.rect.x = self.start_x
+        self.rect.y = self.start_y
 
     def update(self):
 
@@ -91,3 +97,10 @@ class Player(pygame.sprite.Sprite):
 
         if self.on_ground():
             self.yv = -self.jump_height
+
+    def reset(self):
+
+        self.rect.x = self.start_x
+        self.rect.y = self.start_y
+        self.xv = 0
+        self.yv = 0
