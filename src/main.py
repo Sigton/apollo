@@ -57,6 +57,10 @@ class Main:
 
         self.score = 0
 
+        self.speed_ranges = [range(10, 15),
+                             range(7, 12),
+                             range(4, 6)]
+
     def run(self):
 
         self.add_to_queue(">>> Apollo 18 System Info")
@@ -197,7 +201,8 @@ class Main:
 
     def create_debris(self, x, y):
 
-        self.obstacles.add(random.choice(self.obstacle_classes)(x, y, random.randint(10, 15)))
+        sprite = random.randint(0, len(self.obstacle_classes)-1)
+        self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
 
     def create_explosion(self, x, y):
 
