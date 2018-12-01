@@ -26,7 +26,21 @@ class StoryEngine:
         ]
 
         self.story2 = [
-            "you go faster"
+            ">>> Increasing velocity.",
+            ">>> Burning thrusters...",
+            ">>>                     ",
+            ">>> Velocity greater than space debris",
+            ">>> Shutting off thrusters...",
+            ">>>       ",
+            ">>> ERROR: THRUSTER VALVE JAMMED",
+            ">>> WARNING: VELOCITY APPROACHING MAX SAFE LIMIT",
+            ">>> Human action required.",
+            ">>> Enter action:",
+            "(1) Jettison thruster.",
+            "(2) Flood thruster with coolant.",
+            "(3) Attempt to recover navigational control.",
+            ": ",
+            []
         ]
 
         self.story3 = [
