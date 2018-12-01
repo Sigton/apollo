@@ -54,11 +54,14 @@ class Rocket(pygame.sprite.Sprite):
 
 class Flame:
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, alien=False):
 
         self.images = [
             pygame.image.load("src/resources/flame1.png"),
             pygame.image.load("src/resources/flame2.png")
+        ] if not alien else [
+            pygame.image.load("src/resources/flame3.png"),
+            pygame.image.load("src/resources/flame4.png")
         ]
 
         self.image = self.images[0]
@@ -135,6 +138,47 @@ class Meteor(ObstacleBase):
 
         self.speed = speed
         self.damage_factor = speed
+
+
+class Alien(pygame.sprite.Sprite):
+
+    def __init__(self, x, y, speed=10):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.image.load("src/resources/alien.png").convert_alpha()
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.flame = Flame(x+24, y-26, True)
+
+        self.speed = speed
+        self.damage_factor = speed*0.4
+
+        self.x_move_counter = 10
+        self.dir = 1
+
+    def update(self):
+
+        self.flame.update()
+
+        self.rect.x += 3 * self.dir
+        if self.x_move_counter > 0:
+            self.x_move_counter -= 1
+        else:
+            self.x_move_counter = 20
+            self.dir = -self.dir
+
+        self.rect.y += self.speed
+        if self.rect.y >= 720:
+            self.kill()
+
+    def draw(self, display):
+
+        display.blit(self.image, self.rect.topleft)
+        self.flame.draw(display)
 
 
 class Explosion(pygame.sprite.Sprite):
