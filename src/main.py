@@ -38,6 +38,7 @@ class Main:
         self.rocket = sprites.Rocket(690, 255)
         self.flame = sprites.Flame(690, 455)
         self.debris = pygame.sprite.Group()
+        self.explosions = pygame.sprite.Group()
 
         self.text_engine = text.TextEngine()
 
@@ -112,11 +113,10 @@ class Main:
 
             flicker_pos = (flicker_pos + 1) % 16
             self.flame.update()
-            for d in self.debris:
-                d.update()
-                if d.rect.y >= 720:
-                    self.debris.remove(d)
-                sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
+            self.debris.update()
+            sprite_hit = pygame.sprite.spritecollide(self.rocket, self.debris, True)
+            for hit in sprite_hit:
+                self.create_explosion(hit.rect.centrex, hit.rect.bottom)
 
             # draw code
             self.display.blit(self.background, (0, 0))
@@ -125,7 +125,8 @@ class Main:
 
             self.rocket.draw(self.display)
             self.flame.draw(self.display)
-            [d.draw(self.display) for d in self.debris]
+            self.debris.draw(self.display)
+            self.explosions.draw(self.display)
 
             self.clock.tick(60)
             pygame.display.flip()
@@ -178,6 +179,10 @@ class Main:
     def create_debris(self, x, y):
 
         self.debris.add(sprites.Debris(x, y))
+
+    def create_explosion(self, x, y):
+
+        self.explosions.add(sprites.Explosion(x, y))
 
 
 if __name__ == "__main__":
