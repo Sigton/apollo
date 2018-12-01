@@ -63,6 +63,7 @@ class Main:
         self.add_to_queue(">   Fuel   |###############|")
         self.add_to_queue(">  Damage  |---------------|")
         self.add_to_queue(">  Oxygen  |###############|")
+        self.add_to_queue(">   Score  |000000000000000|")
         self.add_to_queue("----------------------------")
         self.add_to_queue(">>> Apollo 18 Mission Log")
         self.add_to_queue("----------------------------")
