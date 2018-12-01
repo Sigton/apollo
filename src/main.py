@@ -36,6 +36,7 @@ class Main:
 
         self.rocket = sprites.Rocket(690, 255)
         self.flame = sprites.Flame(690, 455)
+        self.debris = []
 
         self.text_engine = text.TextEngine()
 
@@ -91,6 +92,10 @@ class Main:
                     self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response-1])
                     response = 0
 
+                if self.story_engine.story[self.story_engine.progress][0] == "!":
+                    exec(self.story_engine.story[self.story_engine.progress][1:])
+                    self.story_engine.progress += 1
+
                 self.add_to_queue(self.story_engine.story[self.story_engine.progress])
                 self.story_engine.progress += 1
                 self.story_next = False
@@ -106,6 +111,10 @@ class Main:
 
             flicker_pos = (flicker_pos + 1) % 16
             self.flame.update()
+            for d in self.debris:
+                d.update()
+                if d.rect.y >= 720:
+                    self.debris.remove(d)
 
             # draw code
             self.display.blit(self.background, (0, 0))
@@ -114,6 +123,7 @@ class Main:
 
             self.rocket.draw(self.display)
             self.flame.draw(self.display)
+            [d.draw(self.display) for d in self.debris]
 
             self.clock.tick(60)
             pygame.display.flip()
@@ -162,6 +172,10 @@ class Main:
                 if self.play_click:
                     random.choice(self.key_sounds).play()
                 self.play_click = 1 - self.play_click
+
+    def create_debris(self, x, y):
+
+        self.debris += [sprites.Debris(x, y)]
 
 
 if __name__ == "__main__":

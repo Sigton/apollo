@@ -48,6 +48,7 @@ class StoryEngine:
             ">>>          ",
             ">>> Shields activated.",
             ">>> Prepare for impact.",
+            "!self.create_debris(600, -150)",
             ">>> Shields at 81%.",
             ">>> Shields at 64%",
             ">>> Shields at 49%",
