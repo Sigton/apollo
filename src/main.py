@@ -51,12 +51,6 @@ class Main:
 
         self.character_limit = 46
 
-        self.story_engine = story.StoryEngine()
-
-        self.story_next = False
-        self.can_progress = True
-        self.stop = False
-
         self.play_click = 0
 
     def run(self):
@@ -67,7 +61,6 @@ class Main:
         game_exit = False
         flicker_pos = 0
         write_delay = 0
-        response = 0
 
         while not game_exit:
 
@@ -76,46 +69,13 @@ class Main:
                     game_exit = True
 
                 if event.type == KEYDOWN:
-                    if not self.can_progress:
-                        if event.key == K_1:
-                            self.can_progress = True
-                            self.text_engine.get_text(": ")[-1].text_append("1")
-                            response = 1
-                        elif event.key == K_2:
-                            self.can_progress = True
-                            self.text_engine.get_text(": ")[-1].text_append("2")
-                            response = 2
-                        elif event.key == K_3:
-                            self.can_progress = True
-                            self.text_engine.get_text(": ")[-1].text_append("3")
-                            response = 3
+                    pass
 
-            if self.story_next and self.can_progress and not self.stop:
-                if self.story_engine.story[self.story_engine.progress] is None:
-                    self.stop = True
-                    continue
-
-                if self.story_engine.progress == len(self.story_engine.story)-1:
-                    self.story_engine.switch_story(self.story_engine.story[self.story_engine.progress][response-1])
-                    response = 0
-
-                if self.story_engine.story[self.story_engine.progress][0] == "!":
-                    exec(self.story_engine.story[self.story_engine.progress][1:])
-                    self.story_engine.progress += 1
-
-                self.add_to_queue(self.story_engine.story[self.story_engine.progress])
-                self.story_engine.progress += 1
-                self.story_next = False
-
-                if self.story_engine.story[self.story_engine.progress - 1] == ": ":
-                    self.can_progress = False
-
-            if not self.stop:
-                if write_delay > 0:
-                    write_delay -= 1
-                else:
-                    self.write()
-                    write_delay = 1
+            if write_delay > 0:
+                write_delay -= 1
+            else:
+                self.write()
+                write_delay = 1
 
             flicker_pos = (flicker_pos + 1) % 16
             self.flame.update()
@@ -156,8 +116,6 @@ class Main:
             # create new writing
 
             if not len(self.text_queue):
-                if not self.story_next:
-                    self.story_next = True
                 return
 
             new_text = self.text_queue.pop(0)
