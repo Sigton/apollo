@@ -9,11 +9,15 @@ class Main:
 
     def __init__(self):
 
+        pygame.mixer.pre_init(44100, 16, 2, 4096)
+        pygame.mixer.init()
         pygame.init()
 
         self.display = pygame.display.set_mode((960, 720))
         self.background = pygame.image.load("src/resources/background.png")
         self.flicker = pygame.image.load("src/resources/flicker.png")
+
+        pygame.mixer.music.load("src/resources/music.mp3")
 
         self.clock = pygame.time.Clock()
 
@@ -34,6 +38,8 @@ class Main:
         self.can_progress = True
 
     def run(self):
+
+        pygame.mixer.music.play(-1)
 
         game_exit = False
         flicker_pos = 0
