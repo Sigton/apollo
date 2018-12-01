@@ -29,7 +29,7 @@ class StoryEngine:
             ">>> Increasing velocity.",
             ">>> Burning thrusters...",
             ">>>                     ",
-            ">>> Velocity greater than space debris",
+            ">>> Escaped debris field.",
             ">>> Shutting off thrusters...",
             ">>>       ",
             ">>> ERROR: THRUSTER VALVE JAMMED",
