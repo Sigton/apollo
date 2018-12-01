@@ -30,6 +30,8 @@ class Player(pygame.sprite.Sprite):
         self.image = sprite_sheet.get_image(0, 0, 32, 64)
 
         self.rect = self.image.get_rect()
+        self.direction = "R"
+        self.touching_ground = False
 
     def update(self):
 
@@ -48,6 +50,44 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.xv
 
         # collision detection time
-        block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+        block_hit_list = pygame.sprite.spritecollide(self, self.level.platforms, False)
+        for block in block_hit_list:
+            if self.xv > 0:
+                self.rect.right = block.rect.left
+            else:
+                self.rect.left = block.rect.right
+            self.xv = 0
 
+        self.rect.y += self.yv
+        block_hit_list = pygame.sprite.spritecollide(self, self.level.platforms, False)
+        for block in block_hit_list:
+            if self.yv > 0:
+                self.rect.bottom = block.rect.top
+            else:
+                self.rect.top = block.rect.bottom
+            self.yv = 0
 
+        self.touching_ground = self.on_ground()
+
+    def on_ground(self):
+
+        self.rect.y += 2
+        hit_list = pygame.sprite.spritecollide(self, self.level.platforms, False)
+        self.rect.y -= 2
+
+        return True if len(hit_list) or self.rect.bottom >= constants.DISPLAY_HEIGHT else False
+
+    def walk_right(self):
+
+        self.xv += self.speed
+        self.direction = "R"
+
+    def walk_left(self):
+
+        self.xv -= self.speed
+        self.direction = "L"
+
+    def jump(self):
+
+        if self.on_ground():
+            self.yv = -self.jump_height
