@@ -34,7 +34,7 @@ class Main:
 
         self.clock = pygame.time.Clock()
 
-        self.rocket = sprites.Rocket(690, 255)
+        self.rocket = sprites.Rocket(615, 550)
         self.debris = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
 
@@ -54,13 +54,20 @@ class Main:
     def run(self):
 
         self.add_to_queue(">>> Apollo 18 System Info")
+        self.add_to_queue("----------------------------")
+        self.add_to_queue("> Velocity |-------#-------|")
+        self.add_to_queue(">   Fuel   |###############|")
+        self.add_to_queue(">  Damage  |---------------|")
+        self.add_to_queue(">  Oxygen  |###############|")
+        self.add_to_queue("----------------------------")
+        self.add_to_queue(">>> Apollo 18 Mission Log")
+        self.add_to_queue("----------------------------")
 
         pygame.mixer.music.play(-1)
         self.ambient_sound.play(-1)
 
         game_exit = False
         flicker_pos = 0
-        write_delay = 0
         moving = 0
 
         while not game_exit:
@@ -86,11 +93,7 @@ class Main:
             if moving == 1:
                 self.rocket.move_right()
 
-            if write_delay > 0:
-                write_delay -= 1
-            else:
-                self.write()
-                write_delay = 1
+            self.write()
 
             flicker_pos = (flicker_pos + 1) % 16
 

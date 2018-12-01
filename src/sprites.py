@@ -14,17 +14,17 @@ class Rocket(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        self.flame = Flame(x, y+200)
+        self.flame = Flame(x, y+100)
 
     def update(self):
         self.flame.update()
 
         self.rect.x += self.xv
 
-        if self.xv > 20:
-            self.xv = 20
-        if self.xv < -20:
-            self.xv = -20
+        if self.xv > 14:
+            self.xv = 14
+        if self.xv < -14:
+            self.xv = -14
 
         self.flame.rect.x = self.rect.x
 
@@ -35,11 +35,11 @@ class Rocket(pygame.sprite.Sprite):
 
     def move_left(self):
 
-        self.xv -= 1
+        self.xv -= .5
 
     def move_right(self):
 
-        self.xv += 1
+        self.xv += .5
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)
