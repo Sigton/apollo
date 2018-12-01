@@ -55,6 +55,8 @@ class Main:
 
         self.obstacle_classes = [sprites.Debris, sprites.Meteor]
 
+        self.score = 0
+
     def run(self):
 
         self.add_to_queue(">>> Apollo 18 System Info")
@@ -109,6 +111,13 @@ class Main:
                     '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
                 self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
                     '#'*int(self.rocket.damage*0.15)+'-'*(15-int(self.rocket.damage*0.15))))
+
+                self.score += 999
+                str_score = str(self.score)
+                while len(str(str_score)) < 15:
+                    str_score = "0" + str_score
+
+                self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
 
             self.write()
 
