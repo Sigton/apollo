@@ -6,6 +6,7 @@ import pygame
 
 from src import constants
 from src import platforms
+from src import terrain
 
 
 class Level:
@@ -68,3 +69,23 @@ class Level:
             n += 1
             if n % 690 == 0:
                 layer += 1
+
+
+class Level01(Level):
+
+    def __init__(self, player, write_data=True):
+
+        Level.__init__(self, player)
+
+        save_file = "src/leveldata/level1.json"
+        tile_dir = "src/leveldata/level1"
+
+        self.layer_range = 1
+
+        level = terrain.LevelData(save_file, tile_dir, "level1")
+        if write_data:
+            level_data = level.write_data()
+        else:
+            level_data = level.load_data()
+
+        self.create_level(level_data)
