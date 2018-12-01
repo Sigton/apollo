@@ -155,9 +155,9 @@ class Alien(pygame.sprite.Sprite):
         self.flame = Flame(x+24, y-26, True)
 
         self.speed = speed
-        self.damage_factor = speed*0.4
+        self.damage_factor = speed*2.4
 
-        self.x_move_counter = 25
+        self.x_move_counter = 60
         self.dir = 1
 
     def update(self):
@@ -174,7 +174,7 @@ class Alien(pygame.sprite.Sprite):
         if self.x_move_counter > 0:
             self.x_move_counter -= 1
         else:
-            self.x_move_counter = 50
+            self.x_move_counter = 120
             self.dir = -self.dir
 
         self.rect.y += self.speed

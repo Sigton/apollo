@@ -59,7 +59,7 @@ class Main:
 
         self.speed_ranges = [range(10, 15),
                              range(7, 12),
-                             range(4, 6)]
+                             [2, 2]]
 
     def run(self):
 
