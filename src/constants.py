@@ -20,9 +20,9 @@ PLAYER_JUMP_HEIGHT = 10
 
 # terrain engine constants
 
-# 0 - solid
-# 1 - obstacle
+# S - solid
+# O - obstacle
 TILE_TYPES = {
-    0: 0,
-    1: 1
+    0: "S",
+    1: "O"
 }
