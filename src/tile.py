@@ -8,9 +8,10 @@ from src import spritesheet
 
 # list each platform with co-ords on spritesheet here
 GROUND = (0, 0, 32, 32)
+SPIKE = (32, 0, 32, 32)
 
 # tuple of all platforms
-platforms = (GROUND,)
+platforms = (GROUND, SPIKE)
 
 
 class Platform(pygame.sprite.Sprite):
