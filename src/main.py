@@ -26,7 +26,7 @@ class Main:
 
         self.clock = pygame.time.Clock()
 
-        self.player = player.Player()
+        self.player = player.Player(32, 608)
 
         self.level_list = []
 
