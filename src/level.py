@@ -25,7 +25,7 @@ class Level:
         # number of layers of tiles in the level: this should hopefully stay small
         self.layer_range = 0
 
-        self.background = "LOAD SOME BACKGROUND HERE"
+        self.background = pygame.image.load("src/resources/sprites/background.png")
 
     def update(self):
 
