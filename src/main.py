@@ -75,6 +75,12 @@ class Main:
                     elif event.key in (K_RIGHT, K_d):
                         moving = 1
 
+                if event.type == KEYUP:
+                    if event.key in (K_LEFT, K_a) and not moving == 1:
+                        moving = 0
+                    elif event.key in (K_RIGHT, K_d) and not moving == -1:
+                        moving = 0
+
             if moving == -1:
                 self.rocket.move_left()
             if moving == 1:

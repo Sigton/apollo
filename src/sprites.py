@@ -19,17 +19,27 @@ class Rocket(pygame.sprite.Sprite):
     def update(self):
         self.flame.update()
 
-        self.xv *= 0.8
         self.rect.x += self.xv
+
+        if self.xv > 20:
+            self.xv = 20
+        if self.xv < -20:
+            self.xv = -20
+
         self.flame.rect.x = self.rect.x
+
+        if self.rect.right < 300:
+            self.rect.left = 960
+        if self.rect.left > 960:
+            self.rect.right = 300
 
     def move_left(self):
 
-        self.xv -= .1
+        self.xv -= 1
 
     def move_right(self):
 
-        self.xv += .1
+        self.xv += 1
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)
