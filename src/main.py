@@ -104,12 +104,13 @@ class Main:
             # draw code
             self.display.fill((0, 0, 0))
             self.display.blit(self.background, (0, 0))
-            self.display.blit(self.flicker, (0, flicker_pos))
-            self.text_engine.draw(self.display)
 
             self.rocket.draw(self.display)
             self.debris.draw(self.display)
             self.explosions.draw(self.display)
+
+            self.display.blit(self.flicker, (0, flicker_pos))
+            self.text_engine.draw(self.display)
 
             self.clock.tick(60)
             pygame.display.flip()
