@@ -21,8 +21,12 @@ class TextEngine:
         self.text_surfs.append(text_object)
 
         if self.get_lines() > 36:  # scroll up
-            pass
+            self.text_surfs = self.text_surfs[-10:]
 
+            n = 0
+            for text in self.text_surfs:
+                text.set_pos(10, (n*18)+4)
+                n += 1
 
     def get_text(self, content):
 
