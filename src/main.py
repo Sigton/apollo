@@ -72,6 +72,14 @@ class Main:
         if len(obstacle_hits):
             self.player.reset()
 
+        if run == 1:
+            self.player.walk_right()
+        elif run == -1:
+            self.player.walk_left()
+
+        if jump:
+            self.player.jump()
+
         # Updating
         self.player.update()
         self.current_level.update()
