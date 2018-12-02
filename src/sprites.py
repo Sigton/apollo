@@ -404,3 +404,33 @@ class WarningMessage(pygame.sprite.Sprite):
     def draw(self, display):
 
         display.blit(self.image, self.rect.topleft)
+
+
+class GameEndSign:
+
+    def __init__(self, end_type):
+
+        self.images = [
+            pygame.image.load("src/resources/missionfailed.png"),
+            pygame.image.load("src/resources/outofoxygen.png"),
+            pygame.image.load("src/resources/shipdestroyed.png"),
+            pygame.image.load("src/resources/outoffuel.png")
+        ]
+
+        self.image1 = self.images[0]
+        self.image2 = self.images[end_type]
+
+        self.rect1 = self.image1.get_rect()
+        self.rect1.centerx = 630
+        self.rect1.y = 200
+
+        self.rect2 = self.image2.get_rect()
+        self.rect2.centerx = 630
+        self.rect2.y = 240
+
+        self.type = end_type
+
+    def draw(self, display):
+
+        display.blit(self.image1, self.rect1.topleft)
+        display.blit(self.image2, self.rect2.topleft)
