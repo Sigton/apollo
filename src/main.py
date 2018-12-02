@@ -57,6 +57,7 @@ class Main:
         self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
+        self.highscore = 137864
 
         self.speed_ranges = [range(10, 15),
                              range(7, 12),
@@ -68,6 +69,10 @@ class Main:
 
     def run(self):
 
+        str_score = str(self.highscore)
+        while len(str(str_score)) < 15:
+            str_score = "0" + str_score
+
         self.add_to_queue(">>> Apollo 18 System Info")
         self.add_to_queue("----------------------------")
         self.add_to_queue("> Velocity |-------#-------|")
@@ -75,7 +80,7 @@ class Main:
         self.add_to_queue(">  Damage  |---------------|")
         self.add_to_queue(">  Oxygen  |###############|")
         self.add_to_queue(">   Score  |000000000000000|")
-        self.add_to_queue("> Highscore|000000000000000|")
+        self.add_to_queue("> Highscore|{}|".format(str_score))
         self.add_to_queue("----------------------------")
         self.add_to_queue(">>> Apollo 18 Mission Log")
         self.add_to_queue("----------------------------")
@@ -184,7 +189,7 @@ class Main:
                 ('-' * (7 - int(abs(self.rocket.xv) // 2))) +
                 ('#' * int(abs(self.rocket.xv) // 2)) if self.rocket.xv < 0 else '-' * 7,
                 ('#' * int(self.rocket.xv // 2)) + (
-                            '-' * int(7 - (self.rocket.xv // 2))) if self.rocket.xv > 0 else '-' * 7
+                        '-' * int(7 - (self.rocket.xv // 2))) if self.rocket.xv > 0 else '-' * 7
             ))
             self.text_engine.text_surfs[3].set_text(">   Fuel   |{}|".format(
                 '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
@@ -196,8 +201,11 @@ class Main:
             str_score = str(self.score)
             while len(str(str_score)) < 15:
                 str_score = "0" + str_score
-
             self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
+
+            if self.score > self.highscore:
+                self.highscore = self.score
+                self.text_engine.text_surfs[7].set_text("> Highscore|{}|".format(str_score))
 
         if self.rocket.fuel < self.fuel_threshold:
             self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
