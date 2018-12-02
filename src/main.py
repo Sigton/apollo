@@ -62,7 +62,9 @@ class Main:
         self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
-        self.highscore = 0
+
+        with open("src/highscore.json", 'r') as infile:
+            self.highscore = json.load(infile)["highscore"]
 
         self.speed_ranges = [range(10, 15),
                              range(7, 12),
@@ -206,6 +208,9 @@ class Main:
 
             self.clock.tick(60)
             pygame.display.flip()
+
+        with open("src/highscore.json", 'w') as outfile:
+            json.dump({"highscore": self.highscore}, outfile)
 
     def update_hud(self):
 
