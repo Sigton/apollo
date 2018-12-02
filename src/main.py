@@ -250,16 +250,16 @@ class Main:
         if self.rocket.fuel < self.fuel_threshold:
             self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
             self.fuel_threshold -= 10
-            if self.fuel_threshold < 20:
+            if self.fuel_threshold < 20 and not self.resetting:
                 self.warning_manager.add(2)
 
         if self.rocket.oxygen < self.oxygen_threshold:
             self.add_to_queue(">>> Oxygen at {}%.".format(self.oxygen_threshold))
             self.oxygen_threshold -= 10
-            if self.oxygen_threshold < 20:
+            if self.oxygen_threshold < 20 and not self.resetting:
                 self.warning_manager.add(0)
 
-        if self.rocket.damage >= 70:
+        if self.rocket.damage >= 70 and not self.resetting:
             self.warning_manager.add(1)
 
         self.write()
@@ -323,6 +323,8 @@ class Main:
 
         self.score = 0
         self.resetting = True
+
+        self.misc.empty()
 
 
 if __name__ == "__main__":
