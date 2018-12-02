@@ -184,7 +184,7 @@ class Main:
             flicker_pos = (flicker_pos + 1) % 16
 
             if self.can_spawn:
-                self.score += 789
+                self.score += 89
                 if debris_delay > 0:
                     debris_delay -= 1
                 else:
