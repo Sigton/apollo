@@ -98,7 +98,7 @@ class Main:
 
         self.fuel_threshold = 90
         self.oxygen_threshold = 90
-        self.score_threshold = 10000
+        self.score_threshold = 250
 
         self.resetting = False
 
@@ -205,7 +205,7 @@ class Main:
             flicker_pos = (flicker_pos + 1) % 16
 
             if self.can_spawn:
-                self.score += 89
+                self.score += 1
                 if debris_delay > 0:
                     debris_delay -= 1
                 else:
@@ -284,7 +284,7 @@ class Main:
 
             if self.score > self.score_threshold:
                 self.blip.play()
-                self.score_threshold += 10000
+                self.score_threshold += 250
 
             if self.score > self.highscore:
                 self.highscore = self.score
