@@ -254,6 +254,9 @@ class Main:
             if self.oxygen_threshold < 20:
                 self.warning_manager.add(0)
 
+        if self.rocket.damage >= 70:
+            self.warning_manager.add(1)
+
         self.write()
 
     def add_to_queue(self, new_text):

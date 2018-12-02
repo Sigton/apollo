@@ -347,9 +347,14 @@ class WarningManager:
 
         self.warnings = pygame.sprite.Group()
 
+        self.flash = 60
+
     def update(self):
 
-        self.warnings.update()
+        if self.flash > 0:
+            self.flash -= 1
+        else:
+            self.flash = 60
 
     def add(self, warning_type):
 
@@ -359,7 +364,7 @@ class WarningManager:
         new_warning = WarningMessage(warning_type)
         self.warnings.add(new_warning)
         new_warning.rect.centerx = 630
-        new_warning.rect.y = 200 + len(self.warnings)*30
+        new_warning.rect.y = 200 + len(self.warnings)*40
 
     def has_warning(self, warning_type):
 
@@ -371,7 +376,8 @@ class WarningManager:
 
     def draw(self, display):
 
-        [warning.draw(display) for warning in self.warnings]
+        if self.flash >= 30:
+            [warning.draw(display) for warning in self.warnings]
 
 
 class WarningMessage(pygame.sprite.Sprite):
@@ -388,6 +394,8 @@ class WarningMessage(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.type = warning_type
+
+        self.flash = 60
 
     def draw(self, display):
 
