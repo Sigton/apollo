@@ -182,7 +182,7 @@ class ObstacleBase(pygame.sprite.Sprite):
 
 class Debris(ObstacleBase):
 
-    def __init__(self, x, y, speed=10):
+    def __init__(self, x, y, speed=10, direction=0):
 
         ObstacleBase.__init__(self)
 
@@ -194,6 +194,8 @@ class Debris(ObstacleBase):
 
         self.speed = speed
         self.damage_factor = speed*0.7
+
+        self.direction = direction
 
 
 class Meteor(ObstacleBase):
