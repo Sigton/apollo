@@ -406,9 +406,11 @@ class WarningMessage(pygame.sprite.Sprite):
         display.blit(self.image, self.rect.topleft)
 
 
-class GameEndSign:
+class GameEndSign(pygame.sprite.Sprite):
 
     def __init__(self, end_type):
+
+        pygame.sprite.Sprite.__init__(self)
 
         self.images = [
             pygame.image.load("src/resources/missionfailed.png"),

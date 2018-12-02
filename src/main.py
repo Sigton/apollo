@@ -42,6 +42,7 @@ class Main:
         self.obstacles = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
+        self.misc = pygame.sprite.Group()
         self.backgrounds.add(sprites.Background(260, -720))
         self.backgrounds.add(sprites.Background(260, 0))
 
@@ -157,6 +158,7 @@ class Main:
                 self.rocket_move_vertical_counter = 345
                 can_spawn = False
                 self.warning_manager.clear()
+                self.misc.add(sprites.GameEndSign(1))
             else:
                 if can_spawn:
                     if moving == -1:
@@ -198,6 +200,7 @@ class Main:
                 self.small_explosion_sound.play()
 
             self.warning_manager.update()
+            self.misc.update()
 
             # draw code
             self.display.fill((0, 0, 0))
@@ -208,6 +211,7 @@ class Main:
                 obstacle.draw(self.display)
             self.explosions.draw(self.display)
             self.warning_manager.draw(self.display)
+            [x.draw(self.display) for x in self.misc]
 
             self.display.blit(self.flicker, (0, -flicker_pos))
             self.text_engine.draw(self.display)
