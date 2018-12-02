@@ -157,7 +157,8 @@ class Alien(pygame.sprite.Sprite):
         self.speed = speed
         self.damage_factor = speed*2.4
 
-        self.x_move_counter = 60
+        self.x_move = 120
+        self.x_move_counter = self.x_move//2
         self.dir = 1
 
     def update(self):
@@ -174,8 +175,11 @@ class Alien(pygame.sprite.Sprite):
         if self.x_move_counter > 0:
             self.x_move_counter -= 1
         else:
-            self.x_move_counter = 120
+            self.x_move_counter = self.x_move
             self.dir = -self.dir
+
+        if self.x_move_counter == self.x_move // 2:
+            self.shoot()
 
         self.rect.y += self.speed
 
@@ -183,6 +187,9 @@ class Alien(pygame.sprite.Sprite):
 
         if self.rect.y >= 720:
             self.kill()
+
+    def shoot(self):
+        self.groups()[0].add(Bullet(self.rect.centerx, self.rect.bottom))
 
     def draw(self, display):
 
