@@ -103,6 +103,14 @@ class Main:
 
         self.can_spawn = False
 
+        self.score_messages = ["Better luck next time!",
+                               "Getting there!",
+                               "Good score!",
+                               "Awesome score!",
+                               "Amazing score!",
+                               "Incredible score!",
+                               "You have mastered the game!"]
+
     def run(self):
 
         str_score = str(self.highscore)
@@ -379,6 +387,13 @@ class Main:
 
         self.text_engine.clear()
         self.add_to_queue(">>> You scored: {}.".format(self.score))
+
+        if int(self.score/2000) >= 6:
+            message = int(self.score/2000)
+        else:
+            message = 6
+
+        self.add_to_queue(">>> {}".format(self.score_messages[message]))
 
         self.score = 0
         self.resetting = True
