@@ -182,11 +182,18 @@ class ObstacleBase(pygame.sprite.Sprite):
 
 class Debris(ObstacleBase):
 
-    def __init__(self, x, y, speed=10, direction=0):
+    def __init__(self, x, y, speed=10, diagonal=False, direction=0):
 
         ObstacleBase.__init__(self)
 
-        self.image = pygame.image.load("src/resources/debris.png").convert_alpha()
+        if not diagonal:
+            self.image = random.choice([pygame.image.load("src/resources/debris.png").convert_alpha(),
+                                        pygame.image.load("src/resources/debris1.png").convert_alpha()])
+        else:
+            if direction > 0:
+                self.image = pygame.image.load("src/resources/debris3.png").convert_alpha()
+            else:
+                self.image = pygame.image.load("src/resources/debris2.png").convert_alpha()
 
         self.rect = self.image.get_rect()
         self.rect.x = x
