@@ -249,7 +249,7 @@ class Alien(pygame.sprite.Sprite):
 
         self.flame.rect.topleft = (self.rect.x + 30, self.rect.y - 20)
 
-        if self.rect.y >= 720:
+        if self.flame.rect.y >= 720:
             self.kill()
 
     def shoot(self):
