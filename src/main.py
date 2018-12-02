@@ -53,11 +53,11 @@ class Main:
 
         self.play_click = 0
 
-        self.obstacle_classes = [sprites.Alien]
+        self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
 
-        self.speed_ranges = [[1,1],
+        self.speed_ranges = [range(10, 15),
                              range(7, 12),
                              [2, 2]]
 
@@ -100,10 +100,14 @@ class Main:
                     elif event.key in (K_RIGHT, K_d) and not moving == -1:
                         moving = 0
 
-            if moving == -1:
-                self.rocket.move_left()
-            if moving == 1:
-                self.rocket.move_right()
+            if self.rocket.damage >= 100 or self.rocket.fuel <= 0:
+                # DIE
+                pass
+            else:
+                if moving == -1:
+                    self.rocket.move_left()
+                if moving == 1:
+                    self.rocket.move_right()
 
             self.update_hud()
 
@@ -113,7 +117,7 @@ class Main:
                 debris_delay -= 1
             else:
                 self.create_debris(random.randint(300, 935), -75)
-                debris_delay = 12000
+                debris_delay = 120
 
             self.backgrounds.update()
             self.rocket.update()
