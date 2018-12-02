@@ -41,8 +41,7 @@ class Main:
         self.big_explosion_sound = pygame.mixer.Sound("src/resources/explosion2.wav")
         self.big_explosion_sound.set_volume(0.5)
         self.whoosh = pygame.mixer.Sound("src/resources/whoosh.wav")
-        self.whoosh.set_volume(0.7)
-        self.whoosh_channel = pygame.mixer.Channel(15)
+        self.whoosh.set_volume(0.6)
 
         self.clock = pygame.time.Clock()
 
@@ -147,13 +146,11 @@ class Main:
                         elif event.key in (K_LEFT, K_a):
                             moving = -1
                             self.rocket.show_mini = 1
-                            if not self.whoosh_channel.get_busy():
-                                self.whoosh_channel.play(self.whoosh)
+                            self.whoosh.play()
                         elif event.key in (K_RIGHT, K_d):
                             moving = 1
                             self.rocket.show_mini = -1
-                            if not self.whoosh_channel.get_busy():
-                                self.whoosh_channel.play(self.whoosh)
+                            self.whoosh.play()
 
                 if event.type == KEYUP:
                     if event.key in (K_LEFT, K_a) and not moving == 1:
