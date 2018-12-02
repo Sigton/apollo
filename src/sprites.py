@@ -268,9 +268,13 @@ class Explosion(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("src/resources/explosion.png")
+        self.images = [pygame.image.load("src/resources/explosion.png"),
+                       pygame.image.load("src/resources/explosion1.png"),
+                       pygame.image.load("src/resources/explosion2.png")]
+        self.image = self.images[2]
         self.rect = self.image.get_rect()
 
+        self.center = (x, y)
         self.rect.center = (x, y)
 
         self.lifetime = lifetime
@@ -278,6 +282,15 @@ class Explosion(pygame.sprite.Sprite):
     def update(self):
 
         self.lifetime -= 1
+
+        if self.lifetime == 2:
+            self.image = self.images[2]
+        elif self.lifetime in [12, 4]:
+            self.image = self.images[1]
+        elif self.lifetime == 9:
+            self.image = self.images[0]
+        self.rect.center = self.center
+
         if self.lifetime <= 0:
             self.kill()
 
