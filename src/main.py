@@ -99,6 +99,8 @@ class Main:
         self.oxygen_threshold = 90
         self.score_threshold = 250
 
+        self.spawn_intervals = 120
+
         self.resetting = False
 
         self.can_spawn = False
@@ -138,7 +140,6 @@ class Main:
         flicker_pos = 0
         moving = 0
         debris_delay = 120
-        spawn_intervals = 120
         diff_interval = 3
 
         while not game_exit:
@@ -217,11 +218,11 @@ class Main:
                     debris_delay -= 1
                 else:
                     self.create_debris(random.randint(300, 935), -75)
-                    debris_delay = spawn_intervals
+                    debris_delay = self.spawn_intervals
                     diff_interval -= 1
                     if diff_interval == 0:
-                        if spawn_intervals > 10:
-                            spawn_intervals -= 3
+                        if self.spawn_intervals > 10:
+                            self.spawn_intervals -= 3
                         self.obstacle_selection_prob += [random.randint(0, 2)]
                         s = random.randint(0, 1)
                         self.speed_ranges[s] = range(self.speed_ranges[s][0]+1, self.speed_ranges[s][-1]+2)
@@ -404,6 +405,7 @@ class Main:
                                                  range(7, 12),
                                                  [2, 2]]
         self.obstacle_selection_prob = [0, 0, 0, 1, 1]
+        self.spawn_intervals = 120
 
 
 if __name__ == "__main__":
