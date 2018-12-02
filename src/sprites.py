@@ -43,6 +43,13 @@ class Rocket(pygame.sprite.Sprite):
             self.max_speed = 14-(0.07*self.damage)
             self.oxygen -= self.damage/1000
 
+        if self.fuel < 0:
+            self.fuel = 0
+        if self.oxygen < 0:
+            self.oxygen = 0
+        if self.damage > 100:
+            self.damage = 100
+
         self.flame.rect.topleft = (self.rect.x, self.rect.y+100)
 
         if self.rect.right < 300:
