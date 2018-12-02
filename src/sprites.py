@@ -160,10 +160,18 @@ class ObstacleBase(pygame.sprite.Sprite):
         self.rect = None
         self.speed = None
         self.damage_factor = None
+        self.direction = 0
 
     def update(self):
 
         self.rect.y += self.speed
+        self.rect.x += self.speed * self.direction
+
+        if self.rect.right < 300:
+            self.rect.left = 960
+        if self.rect.left > 960:
+            self.rect.right = 300
+
         if self.rect.y >= 720:
             self.kill()
 
@@ -190,12 +198,18 @@ class Debris(ObstacleBase):
 
 class Meteor(ObstacleBase):
 
-    def __init__(self, x, y, speed=7):
+    def __init__(self, x, y, speed=7, diagonal=False, direction=0):
 
         ObstacleBase.__init__(self)
 
-        self.image = random.choice([pygame.image.load("src/resources/meteor.png").convert_alpha(),
-                                    pygame.image.load("src/resources/meteor1.png").convert_alpha()])
+        if not diagonal:
+            self.image = random.choice([pygame.image.load("src/resources/meteor.png").convert_alpha(),
+                                        pygame.image.load("src/resources/meteor1.png").convert_alpha()])
+        else:
+            if direction > 0:
+                self.image = pygame.image.load("src/resources/meteor3.png").convert_alpha()
+            else:
+                self.image = pygame.image.load("src/resources/meteor2.png").convert_alpha()
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -203,6 +217,8 @@ class Meteor(ObstacleBase):
 
         self.speed = speed
         self.damage_factor = speed
+
+        self.direction = direction
 
 
 class Alien(pygame.sprite.Sprite):
