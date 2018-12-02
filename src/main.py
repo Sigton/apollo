@@ -406,6 +406,9 @@ class Main:
                                                  [2, 2]]
         self.obstacle_selection_prob = [0, 0, 0, 1, 1]
         self.spawn_intervals = 120
+        self.fuel_threshold = 90
+        self.oxygen_threshold = 90
+        self.score_threshold = 250
 
 
 if __name__ == "__main__":
