@@ -374,6 +374,10 @@ class WarningManager:
 
         pass
 
+    def clear(self):
+
+        self.warnings.empty()
+
     def draw(self, display):
 
         if self.flash >= 30:
