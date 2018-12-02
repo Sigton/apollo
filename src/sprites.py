@@ -20,6 +20,8 @@ class Rocket(pygame.sprite.Sprite):
         self.damage = 0
         self.oxygen = 100
 
+        self.leaking_o2 = False
+
     def update(self):
         self.flame.update()
 
@@ -31,6 +33,8 @@ class Rocket(pygame.sprite.Sprite):
             self.xv = -14
 
         self.fuel -= abs(self.xv)/200
+        if self.leaking_o2:
+            self.oxygen -= self.damage/500
 
         self.flame.rect.topleft = (self.rect.x, self.rect.y+100)
 
