@@ -32,7 +32,7 @@ class Main:
         self.ambient_sound.set_volume(0.3)
 
         self.small_explosion_sound = pygame.mixer.Sound("src/resources/explosion.wav")
-        self.small_explosion_sound.set_volume(0.5)
+        self.small_explosion_sound.set_volume(0.4)
         self.beep_sound = pygame.mixer.Sound("src/resources/beep.wav")
 
         self.clock = pygame.time.Clock()
