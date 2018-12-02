@@ -21,6 +21,9 @@ class Main:
         self.display = pygame.display.set_mode((960, 720))
         pygame.display.set_caption("Apollo")
 
+        icon = pygame.image.load("src/resources/icon.png")
+        pygame.display.set_icon(icon)
+
         self.flicker = pygame.image.load("src/resources/flicker.png")
 
         pygame.mixer.music.load("src/resources/music.mp3")
