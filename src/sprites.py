@@ -152,7 +152,7 @@ class Alien(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        self.flame = Flame(x+25, y-20, True)
+        self.flame = Flame(x+30, y-20, True)
 
         self.speed = speed
         self.damage_factor = speed*2.4
@@ -163,7 +163,6 @@ class Alien(pygame.sprite.Sprite):
     def update(self):
 
         self.flame.update()
-        self.flame.rect.topleft = (self.rect.x+25, self.rect.y-20)
 
         self.rect.x += 2 * self.dir
 
@@ -179,6 +178,9 @@ class Alien(pygame.sprite.Sprite):
             self.dir = -self.dir
 
         self.rect.y += self.speed
+
+        self.flame.rect.topleft = (self.rect.x + 30, self.rect.y - 20)
+
         if self.rect.y >= 720:
             self.kill()
 

@@ -53,11 +53,11 @@ class Main:
 
         self.play_click = 0
 
-        self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
+        self.obstacle_classes = [sprites.Alien]
 
         self.score = 0
 
-        self.speed_ranges = [range(10, 15),
+        self.speed_ranges = [[1,1],
                              range(7, 12),
                              [2, 2]]
 
@@ -131,7 +131,7 @@ class Main:
                 debris_delay -= 1
             else:
                 self.create_debris(random.randint(300, 935), -75)
-                debris_delay = 120
+                debris_delay = 12000
 
             self.backgrounds.update()
             self.rocket.update()
@@ -147,7 +147,8 @@ class Main:
 
             self.backgrounds.draw(self.display)
             self.rocket.draw(self.display)
-            self.obstacles.draw(self.display)
+            for obstacle in self.obstacles:
+                obstacle.draw(self.display)
             self.explosions.draw(self.display)
 
             self.display.blit(self.flicker, (0, -flicker_pos))
