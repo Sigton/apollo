@@ -110,6 +110,7 @@ class Main:
         debris_delay = 120
         spawn_intervals = 120
         diff_interval = 3
+        end_type = 0
 
         while not game_exit:
 
@@ -158,7 +159,14 @@ class Main:
                 self.rocket_move_vertical_counter = 345
                 can_spawn = False
                 self.warning_manager.clear()
-                self.misc.add(sprites.GameEndSign(1))
+                if self.rocket.fuel <= 0:
+                    end_type = 3
+                elif self.rocket.oxygen <= 0:
+                    end_type = 1
+                else:
+                    end_type = 2
+
+                self.misc.add(sprites.GameEndSign(end_type))
             else:
                 if can_spawn:
                     if moving == -1:
