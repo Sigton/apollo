@@ -95,7 +95,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         moving = 0
-        debris_delay = 60
+        debris_delay = 120
         spawn_intervals = 120
 
         while not game_exit:
@@ -106,20 +106,21 @@ class Main:
 
                 if event.type == KEYDOWN:
 
-                    if not can_spawn and self.text_engine.get_lines() > 11:
-                        if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
-                            can_spawn = True
-                            self.add_to_queue(">>> Mission started.")
-                        elif event.key == K_RETURN:
-                            self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
-                            self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
-                            self.add_to_queue(">>> Good luck. Mission started.")
-                            can_spawn = True
+                    if self.rocket_move_vertical_counter == 0:
+                        if not can_spawn:
+                            if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
+                                can_spawn = True
+                                self.add_to_queue(">>> Mission started.")
+                            elif event.key == K_RETURN:
+                                self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
+                                self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
+                                self.add_to_queue(">>> Good luck. Mission started.")
+                                can_spawn = True
 
-                    elif event.key in (K_LEFT, K_a):
-                        moving = -1
-                    elif event.key in (K_RIGHT, K_d):
-                        moving = 1
+                        elif event.key in (K_LEFT, K_a):
+                            moving = -1
+                        elif event.key in (K_RIGHT, K_d):
+                            moving = 1
 
                 if event.type == KEYUP:
                     if event.key in (K_LEFT, K_a) and not moving == 1:
