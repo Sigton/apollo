@@ -127,6 +127,7 @@ class Main:
             flicker_pos = (flicker_pos + 1) % 16
 
             if can_spawn:
+                self.score += 789
                 if debris_delay > 0:
                     debris_delay -= 1
                 else:
@@ -160,7 +161,7 @@ class Main:
 
     def update_hud(self):
 
-        if self.text_engine.get_lines() > 6:
+        if self.text_engine.get_lines() > 7:
             self.text_engine.text_surfs[2].set_text("> Velocity |{}#{}|".format(
                 ('-' * (7 - int(abs(self.rocket.xv) // 2))) +
                 ('#' * int(abs(self.rocket.xv) // 2)) if self.rocket.xv < 0 else '-' * 7,
@@ -172,7 +173,6 @@ class Main:
             self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
                 '#' * int(self.rocket.damage * 0.15) + '-' * (15 - int(self.rocket.damage * 0.15))))
 
-            self.score += 999
             str_score = str(self.score)
             while len(str(str_score)) < 15:
                 str_score = "0" + str_score
