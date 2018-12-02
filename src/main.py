@@ -33,7 +33,7 @@ class Main:
 
         self.clock = pygame.time.Clock()
 
-        self.rocket = sprites.Rocket(615, 550)
+        self.rocket = sprites.Rocket(615, -106)
         self.obstacles = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
@@ -60,6 +60,7 @@ class Main:
         self.speed_ranges = [range(10, 15),
                              range(7, 12),
                              [2, 2]]
+        self.rocket_move_vertical_counter = 328
 
     def run(self):
 
@@ -99,6 +100,10 @@ class Main:
                         moving = 0
                     elif event.key in (K_RIGHT, K_d) and not moving == -1:
                         moving = 0
+
+            if self.rocket_move_vertical_counter > 0:
+                self.rocket.rect.y += 2
+                self.rocket_move_vertical_counter -= 1
 
             if self.rocket.damage >= 100 or self.rocket.fuel <= 0:
                 # DIE
