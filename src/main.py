@@ -62,6 +62,8 @@ class Main:
                              [2, 2]]
         self.rocket_move_vertical_counter = 328
 
+        self.fuel_threshold = 90
+
     def run(self):
 
         self.add_to_queue(">>> Apollo 18 System Info")
@@ -178,6 +180,10 @@ class Main:
                 str_score = "0" + str_score
 
             self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
+
+        if self.rocket.fuel < self.fuel_threshold:
+            self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
+            self.fuel_threshold -= 10
 
         self.write()
 
