@@ -350,7 +350,12 @@ class Main:
     def create_debris(self, x, y):
 
         sprite = random.choice(self.obstacle_selection_prob)
-        self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
+        if sprite < 2:
+            self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite]),
+                                                             random.randint(-1, 1)))
+        else:
+            self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
+
         self.whoosh2.play()
 
     def create_explosion(self, x, y):
