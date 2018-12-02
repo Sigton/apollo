@@ -105,25 +105,7 @@ class Main:
             if moving == 1:
                 self.rocket.move_right()
 
-            if self.text_engine.get_lines() > 6:
-                self.text_engine.text_surfs[2].set_text("> Velocity |{}#{}|".format(
-                    ('-'*(7-int(abs(self.rocket.xv)//2))) +
-                    ('#'*int(abs(self.rocket.xv)//2))if self.rocket.xv < 0else'-'*7,
-                    ('#'*int(self.rocket.xv//2))+('-'*int(7-(self.rocket.xv//2))) if self.rocket.xv > 0 else '-' * 7
-                ))
-                self.text_engine.text_surfs[3].set_text(">   Fuel   |{}|".format(
-                    '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
-                self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
-                    '#'*int(self.rocket.damage*0.15)+'-'*(15-int(self.rocket.damage*0.15))))
-
-                self.score += 999
-                str_score = str(self.score)
-                while len(str(str_score)) < 15:
-                    str_score = "0" + str_score
-
-                self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
-
-            self.write()
+            self.update_hud()
 
             flicker_pos = (flicker_pos + 1) % 16
 
@@ -156,6 +138,29 @@ class Main:
 
             self.clock.tick(60)
             pygame.display.flip()
+
+    def update_hud(self):
+
+        if self.text_engine.get_lines() > 6:
+            self.text_engine.text_surfs[2].set_text("> Velocity |{}#{}|".format(
+                ('-' * (7 - int(abs(self.rocket.xv) // 2))) +
+                ('#' * int(abs(self.rocket.xv) // 2)) if self.rocket.xv < 0 else '-' * 7,
+                ('#' * int(self.rocket.xv // 2)) + (
+                            '-' * int(7 - (self.rocket.xv // 2))) if self.rocket.xv > 0 else '-' * 7
+            ))
+            self.text_engine.text_surfs[3].set_text(">   Fuel   |{}|".format(
+                '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
+            self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
+                '#' * int(self.rocket.damage * 0.15) + '-' * (15 - int(self.rocket.damage * 0.15))))
+
+            self.score += 999
+            str_score = str(self.score)
+            while len(str(str_score)) < 15:
+                str_score = "0" + str_score
+
+            self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
+
+        self.write()
 
     def add_to_queue(self, new_text):
 
