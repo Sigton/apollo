@@ -351,6 +351,8 @@ class WarningManager:
 
         self.beep = pygame.mixer.Sound("src/resources/beep2.wav")
         self.beep.set_volume(0.5)
+        self.alarm = pygame.mixer.Sound("src/resources/alarm.wav")
+        self.alarm.set_volume(0.5)
 
     def update(self):
 
@@ -366,6 +368,7 @@ class WarningManager:
         if self.has_warning(warning_type):
             return
 
+        self.alarm.play()
         new_warning = WarningMessage(warning_type)
         self.warnings.add(new_warning)
         new_warning.rect.centerx = 630

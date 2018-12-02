@@ -51,6 +51,8 @@ class Main:
         self.whoosh2.set_volume(0.3)
         self.blip = pygame.mixer.Sound("src/resources/blip.wav")
         self.blip.set_volume(0.5)
+        self.random1 = pygame.mixer.Sound("src/resources/random1.wav")
+        self.random1.set_volume(0.7)
 
         self.clock = pygame.time.Clock()
 
@@ -188,6 +190,7 @@ class Main:
                 else:
                     end_type = 2
                     self.explosion_spread()
+                self.random1.play()
 
                 self.misc.add(sprites.GameEndSign(end_type))
             else:
