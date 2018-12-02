@@ -349,11 +349,16 @@ class WarningManager:
 
         self.flash = 60
 
+        self.beep = pygame.mixer.Sound("src/resources/beep2.wav")
+        self.beep.set_volume(0.5)
+
     def update(self):
 
         if self.flash > 0:
             self.flash -= 1
         else:
+            if len(self.warnings):
+                self.beep.play()
             self.flash = 60
 
     def add(self, warning_type):
