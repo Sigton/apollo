@@ -74,6 +74,9 @@ class Main:
         self.add_to_queue("----------------------------")
         self.add_to_queue(">>> Apollo 18 Mission Log")
         self.add_to_queue("----------------------------")
+        self.add_to_queue(">>> Press any key to begin.")
+
+        can_spawn = False
 
         pygame.mixer.music.play(-1)
         self.ambient_sound.play(-1)
@@ -81,7 +84,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         moving = 0
-        debris_delay = 360
+        debris_delay = 60
 
         while not game_exit:
 
@@ -90,6 +93,11 @@ class Main:
                     game_exit = True
 
                 if event.type == KEYDOWN:
+
+                    if not can_spawn:
+                        can_spawn = True
+                        self.add_to_queue(">>> Mission started.")
+
                     if event.key in (K_LEFT, K_a):
                         moving = -1
                     elif event.key in (K_RIGHT, K_d):
@@ -118,11 +126,12 @@ class Main:
 
             flicker_pos = (flicker_pos + 1) % 16
 
-            if debris_delay > 0:
-                debris_delay -= 1
-            else:
-                self.create_debris(random.randint(300, 935), -75)
-                debris_delay = 120
+            if can_spawn:
+                if debris_delay > 0:
+                    debris_delay -= 1
+                else:
+                    self.create_debris(random.randint(300, 935), -75)
+                    debris_delay = 120
 
             self.backgrounds.update()
             self.rocket.update()
@@ -132,6 +141,7 @@ class Main:
             for hit in sprite_hit:
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
                 self.rocket.damage += hit.damage_factor
+                self.add_to_queue(">>> {} damage taken.".format(hit.damage_factor))
 
             # draw code
             self.display.fill((0, 0, 0))
