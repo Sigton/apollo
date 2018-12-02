@@ -91,9 +91,6 @@ class Main:
                              range(7, 12),
                              [2, 2]]
 
-        self.initial_obstacle_prob = self.obstacle_selection_prob
-        self.initial_speed = self.speed_ranges
-
         self.rocket_move_vertical_counter = 328
 
         self.fuel_threshold = 90
@@ -379,8 +376,10 @@ class Main:
 
         self.misc.empty()
 
-        self.speed_ranges = self.initial_speed
-        self.obstacle_selection_prob = self.initial_obstacle_prob
+        self.speed_ranges = self.speed_ranges = [range(10, 15),
+                                                 range(7, 12),
+                                                 [2, 2]]
+        self.obstacle_selection_prob = [0, 0, 0, 1, 1]
 
 
 if __name__ == "__main__":
