@@ -71,6 +71,8 @@ class Main:
         self.fuel_threshold = 90
         self.oxygen_threshold = 90
 
+        self.resetting = False
+
     def run(self):
 
         str_score = str(self.highscore)
@@ -137,6 +139,10 @@ class Main:
             if self.rocket_move_vertical_counter > 0:
                 self.rocket.rect.y += 2
                 self.rocket_move_vertical_counter -= 1
+            elif self.resetting:
+                self.add_to_queue(">>> Move to begin.")
+                self.add_to_queue(">>> <Enter> for controls.")
+                self.resetting = False
 
             if self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0:
                 self.rocket_move_vertical_counter = 345
@@ -283,9 +289,7 @@ class Main:
         self.add_to_queue(">>> You scored: {}.".format(self.score))
 
         self.score = 0
-
-        self.add_to_queue(">>> Move to begin.")
-        self.add_to_queue(">>> <Enter> for controls.")
+        self.resetting = True
 
 
 if __name__ == "__main__":
