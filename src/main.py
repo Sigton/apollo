@@ -50,7 +50,7 @@ class Main:
         self.whoosh2 = pygame.mixer.Sound("src/resources/whoosh2.wav")
         self.whoosh2.set_volume(0.3)
         self.blip = pygame.mixer.Sound("src/resources/blip.wav")
-        self.blip.set_volume(0.5)
+        self.blip.set_volume(0.7)
         self.random1 = pygame.mixer.Sound("src/resources/random1.wav")
         self.random1.set_volume(0.7)
         self.alien_sound = pygame.mixer.Sound("src/resources/alien.wav")
