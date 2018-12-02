@@ -19,6 +19,8 @@ class Main:
         pygame.mixer.set_num_channels(16)
 
         self.display = pygame.display.set_mode((960, 720))
+        pygame.display.set_caption("Apollo")
+
         self.flicker = pygame.image.load("src/resources/flicker.png")
 
         pygame.mixer.music.load("src/resources/music.mp3")
