@@ -213,12 +213,13 @@ class Main:
             self.rocket.update()
             self.obstacles.update()
             self.explosions.update()
-            sprite_hit = pygame.sprite.spritecollide(self.rocket, self.obstacles, True)
+            sprite_hit = pygame.sprite.spritecollide(self.rocket, self.obstacles, False)
             for hit in sprite_hit:
 
                 if self.rocket.rect.centery < hit.rect.bottom:
                     continue
 
+                hit.kill()
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
                 self.rocket.damage += hit.damage_factor
                 self.add_to_queue(">>> {} damage taken.".format(int(hit.damage_factor)))
