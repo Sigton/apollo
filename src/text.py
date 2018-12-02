@@ -21,7 +21,7 @@ class TextEngine:
         self.text_surfs.append(text_object)
 
         if self.get_lines() > 36:  # scroll up
-            self.text_surfs = self.text_surfs[:10] + self.text_surfs[-8:]
+            self.text_surfs = self.text_surfs[:11] + self.text_surfs[-8:]
 
             n = 0
             for text in self.text_surfs:
@@ -35,6 +35,10 @@ class TextEngine:
     def get_lines(self):
 
         return len(self.text_surfs)
+
+    def clear(self):
+
+        self.text_surfs = self.text_surfs[:11]
 
     def draw(self, display):
 

@@ -263,7 +263,13 @@ class Main:
 
     def reset(self):
 
-        pass
+        self.text_engine.clear()
+        self.add_to_queue(">>> You scored: {}.".format(self.score))
+
+        self.score = 0
+
+        self.add_to_queue(">>> Move to begin.")
+        self.add_to_queue(">>> <Enter> for controls.")
 
 
 if __name__ == "__main__":
