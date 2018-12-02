@@ -32,7 +32,7 @@ class Rocket(pygame.sprite.Sprite):
 
         self.fuel -= abs(self.xv)/200
 
-        self.flame.rect.x = self.rect.x
+        self.flame.rect.topleft = (self.rect.x, self.rect.y+100)
 
         if self.rect.right < 300:
             self.rect.left = 960
