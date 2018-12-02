@@ -147,6 +147,7 @@ class Alien(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load("src/resources/alien.png").convert_alpha()
+        self.shoot_sound = pygame.mixer.Sound("src/resources/lasershoot.wav")
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -190,6 +191,7 @@ class Alien(pygame.sprite.Sprite):
 
     def shoot(self):
         self.groups()[0].add(Bullet(self.rect.centerx, self.rect.bottom))
+        self.shoot_sound.play()
 
     def draw(self, display):
 
