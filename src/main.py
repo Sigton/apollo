@@ -390,12 +390,13 @@ class Main:
         self.text_engine.clear()
         self.add_to_queue(">>> You scored: {}.".format(self.score))
 
-        if int((self.score+1000)/1000) >= 6:
-            message = 6
-        else:
-            message = int((self.score+1000)/1000)
+        m = int((self.score-1000)/1000)
+        if m >= 6:
+            m = 6
+        elif m < 0:
+            m = 1
 
-        self.add_to_queue(">>> {}".format(self.score_messages[message]))
+        self.add_to_queue(">>> {}".format(self.score_messages[m]))
 
         self.score = 0
         self.resetting = True
