@@ -165,7 +165,7 @@ class ObstacleBase(pygame.sprite.Sprite):
     def update(self):
 
         self.rect.y += self.speed
-        self.rect.x += self.speed * self.direction
+        self.rect.x += (self.speed * self.direction) / 2
 
         if self.rect.right < 300:
             self.rect.left = 960
@@ -221,6 +221,8 @@ class Meteor(ObstacleBase):
         self.damage_factor = speed
 
         self.direction = direction
+
+        print(speed, diagonal, direction)
 
 
 class Alien(pygame.sprite.Sprite):

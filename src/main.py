@@ -80,7 +80,7 @@ class Main:
         self.play_click = 0
 
         self.obstacle_selection_prob = [0, 0, 0, 1, 1]
-        self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
+        self.obstacle_classes = [sprites.Meteor, sprites.Meteor, sprites.Meteor]
 
         self.score = 0
 
@@ -350,9 +350,10 @@ class Main:
     def create_debris(self, x, y):
 
         sprite = random.choice(self.obstacle_selection_prob)
+        direction = random.randint(-1, 1)
         if sprite < 2:
             self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite]),
-                                                             random.randint(-1, 1)))
+                                                             abs(direction), direction))
         else:
             self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
 
