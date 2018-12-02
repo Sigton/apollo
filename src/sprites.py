@@ -347,6 +347,10 @@ class WarningManager:
 
         self.warnings = pygame.sprite.Group()
 
+    def update(self):
+
+        self.warnings.update()
+
     def add(self, warning_type):
 
         if self.has_warning(warning_type):
@@ -364,6 +368,10 @@ class WarningManager:
     def remove(self, warning_type):
 
         pass
+
+    def draw(self, display):
+
+        [warning.draw(display) for warning in self.warnings]
 
 
 class WarningMessage(pygame.sprite.Sprite):

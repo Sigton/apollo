@@ -45,6 +45,8 @@ class Main:
         self.backgrounds.add(sprites.Background(260, -720))
         self.backgrounds.add(sprites.Background(260, 0))
 
+        self.warning_manager = sprites.WarningManager()
+
         self.text_engine = text.TextEngine()
 
         self.writing = False
@@ -194,6 +196,8 @@ class Main:
                     self.rocket.leaking_o2 = True
                 self.small_explosion_sound.play()
 
+            self.warning_manager.update()
+
             # draw code
             self.display.fill((0, 0, 0))
 
@@ -202,6 +206,7 @@ class Main:
             for obstacle in self.obstacles:
                 obstacle.draw(self.display)
             self.explosions.draw(self.display)
+            self.warning_manager.draw(self.display)
 
             self.display.blit(self.flicker, (0, -flicker_pos))
             self.text_engine.draw(self.display)
@@ -240,10 +245,14 @@ class Main:
         if self.rocket.fuel < self.fuel_threshold:
             self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
             self.fuel_threshold -= 10
+            if self.fuel_threshold < 20:
+                self.warning_manager.add(2)
 
         if self.rocket.oxygen < self.oxygen_threshold:
             self.add_to_queue(">>> Oxygen at {}%.".format(self.oxygen_threshold))
             self.oxygen_threshold -= 10
+            if self.oxygen_threshold < 20:
+                self.warning_manager.add(0)
 
         self.write()
 
