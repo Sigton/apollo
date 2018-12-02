@@ -49,6 +49,8 @@ class Main:
         self.whoosh.set_volume(0.6)
         self.whoosh2 = pygame.mixer.Sound("src/resources/whoosh2.wav")
         self.whoosh2.set_volume(0.3)
+        self.blip = pygame.mixer.Sound("src/resources/blip.wav")
+        self.blip.set_volume(0.5)
 
         self.clock = pygame.time.Clock()
 
@@ -94,6 +96,7 @@ class Main:
 
         self.fuel_threshold = 90
         self.oxygen_threshold = 90
+        self.score_threshold = 10000
 
         self.resetting = False
 
@@ -275,6 +278,10 @@ class Main:
             while len(str(str_score)) < 15:
                 str_score = "0" + str_score
             self.text_engine.text_surfs[6].set_text(">   Score  |{}|".format(str_score))
+
+            if self.score > self.score_threshold:
+                self.blip.play()
+                self.score_threshold += 10000
 
             if self.score > self.highscore:
                 self.highscore = self.score
