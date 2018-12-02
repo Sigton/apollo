@@ -79,6 +79,8 @@ class Main:
 
         self.resetting = False
 
+        self.can_spawn = False
+
     def run(self):
 
         str_score = str(self.highscore)
@@ -99,8 +101,6 @@ class Main:
         self.add_to_queue(">>> Move to begin.")
         self.add_to_queue(">>> <Enter> for controls.")
 
-        can_spawn = False
-
         pygame.mixer.music.play(-1)
         self.ambient_sound.play(-1)
 
@@ -110,7 +110,6 @@ class Main:
         debris_delay = 120
         spawn_intervals = 120
         diff_interval = 3
-        end_type = 0
 
         while not game_exit:
 
@@ -121,16 +120,16 @@ class Main:
                 if event.type == KEYDOWN:
 
                     if self.rocket_move_vertical_counter == 0:
-                        if not can_spawn:
+                        if not self.can_spawn:
                             if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
-                                can_spawn = True
+                                self.can_spawn = True
                                 self.add_to_queue(">>> Mission started.")
                                 self.beep_sound.play()
                             elif event.key == K_RETURN:
                                 self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
                                 self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
                                 self.add_to_queue(">>> Good luck. Mission started.")
-                                can_spawn = True
+                                self.can_spawn = True
                                 self.beep_sound.play()
 
                         elif event.key in (K_LEFT, K_a):
@@ -155,9 +154,9 @@ class Main:
                 self.add_to_queue(">>> <Enter> for controls.")
                 self.resetting = False
 
-            if self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0:
-                self.rocket_move_vertical_counter = 345
-                can_spawn = False
+            if (self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0) and self.can_spawn:
+                self.rocket_move_vertical_counter = 548
+                self.can_spawn = False
                 self.warning_manager.clear()
                 if self.rocket.fuel <= 0:
                     end_type = 3
@@ -165,10 +164,11 @@ class Main:
                     end_type = 1
                 else:
                     end_type = 2
+                    self.explosion_spread()
 
                 self.misc.add(sprites.GameEndSign(end_type))
             else:
-                if can_spawn:
+                if self.can_spawn:
                     if moving == -1:
                         self.rocket.move_left()
                     if moving == 1:
@@ -178,7 +178,7 @@ class Main:
 
             flicker_pos = (flicker_pos + 1) % 16
 
-            if can_spawn:
+            if self.can_spawn:
                 self.score += 789
                 if debris_delay > 0:
                     debris_delay -= 1
@@ -258,16 +258,16 @@ class Main:
         if self.rocket.fuel < self.fuel_threshold:
             self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
             self.fuel_threshold -= 10
-            if self.fuel_threshold < 20 and not self.resetting:
+            if self.fuel_threshold < 20 and self.can_spawn:
                 self.warning_manager.add(2)
 
         if self.rocket.oxygen < self.oxygen_threshold:
             self.add_to_queue(">>> Oxygen at {}%.".format(self.oxygen_threshold))
             self.oxygen_threshold -= 10
-            if self.oxygen_threshold < 20 and not self.resetting:
+            if self.oxygen_threshold < 20 and self.can_spawn:
                 self.warning_manager.add(0)
 
-        if self.rocket.damage >= 70 and not self.resetting:
+        if self.rocket.damage >= 70 and self.can_spawn:
             self.warning_manager.add(1)
 
         self.write()
@@ -323,6 +323,14 @@ class Main:
     def create_explosion(self, x, y):
 
         self.explosions.add(sprites.Explosion(x, y))
+
+    def explosion_spread(self):
+
+        self.create_explosion(self.rocket.rect.x, self.rocket.rect.y)
+        self.create_explosion(self.rocket.rect.x+25, self.rocket.rect.y+30)
+        self.create_explosion(self.rocket.rect.x+10, self.rocket.rect.y+50)
+        self.create_explosion(self.rocket.rect.x+30, self.rocket.rect.y+80)
+        self.create_explosion(self.rocket.rect.x-5, self.rocket.rect.y+110)
 
     def reset(self):
 
