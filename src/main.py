@@ -96,9 +96,10 @@ class Main:
 
                 if event.type == KEYDOWN:
 
-                    if not can_spawn:
-                        can_spawn = True
-                        self.add_to_queue(">>> Mission started.")
+                    if self.text_engine.get_lines() > 10:
+                        if not can_spawn:
+                            can_spawn = True
+                            self.add_to_queue(">>> Mission started.")
 
                     if event.key in (K_LEFT, K_a):
                         moving = -1
