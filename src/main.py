@@ -81,7 +81,7 @@ class Main:
 
         self.play_click = 0
 
-        self.obstacle_selection_prob = [0, 0, 0, 1, 1]
+        self.obstacle_selection_prob = [0, 0, 0, 1, 1, 1, 2]
         self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
@@ -405,7 +405,7 @@ class Main:
         self.speed_ranges = self.speed_ranges = [range(10, 15),
                                                  range(7, 12),
                                                  [2, 2]]
-        self.obstacle_selection_prob = [0, 0, 0, 1, 1]
+        self.obstacle_selection_prob = [0, 0, 0, 1, 1, 1, 2]
         self.spawn_intervals = 120
         self.fuel_threshold = 90
         self.oxygen_threshold = 90
