@@ -78,7 +78,8 @@ class Main:
         self.add_to_queue("----------------------------")
         self.add_to_queue(">>> Apollo 18 Mission Log")
         self.add_to_queue("----------------------------")
-        self.add_to_queue(">>> Press any key to begin.")
+        self.add_to_queue(">>> Move to begin.")
+        self.add_to_queue(">>> <Enter> for controls.")
 
         can_spawn = False
 
@@ -99,12 +100,17 @@ class Main:
 
                 if event.type == KEYDOWN:
 
-                    if self.text_engine.get_lines() > 10:
-                        if not can_spawn:
+                    if not can_spawn and self.text_engine.get_lines() > 10:
+                        if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
                             can_spawn = True
                             self.add_to_queue(">>> Mission started.")
+                        elif event.key == K_RETURN:
+                            self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
+                            self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
+                            self.add_to_queue(">>> Good luck. Mission started.")
+                            can_spawn = True
 
-                    if event.key in (K_LEFT, K_a):
+                    elif event.key in (K_LEFT, K_a):
                         moving = -1
                     elif event.key in (K_RIGHT, K_d):
                         moving = 1
