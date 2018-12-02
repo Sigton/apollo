@@ -31,6 +31,10 @@ class Main:
         self.rocket_sound.set_volume(0.5)
         self.ambient_sound.set_volume(0.3)
 
+        self.small_explosion_sound = pygame.mixer.Sound("src/resources/explosion.wav")
+        self.small_explosion_sound.set_volume(0.5)
+        self.beep_sound = pygame.mixer.Sound("src/resources/beep.wav")
+
         self.clock = pygame.time.Clock()
 
         self.rocket = sprites.Rocket(self, 615, -106)
@@ -111,11 +115,13 @@ class Main:
                             if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
                                 can_spawn = True
                                 self.add_to_queue(">>> Mission started.")
+                                self.beep_sound.play()
                             elif event.key == K_RETURN:
                                 self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
                                 self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
                                 self.add_to_queue(">>> Good luck. Mission started.")
                                 can_spawn = True
+                                self.beep_sound.play()
 
                         elif event.key in (K_LEFT, K_a):
                             moving = -1
@@ -167,6 +173,7 @@ class Main:
                 self.add_to_queue(">>> {} damage taken.".format(int(hit.damage_factor)))
                 if not self.rocket.leaking_o2:
                     self.rocket.leaking_o2 = True
+                self.small_explosion_sound.play()
 
             # draw code
             self.display.fill((0, 0, 0))
