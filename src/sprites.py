@@ -349,7 +349,17 @@ class WarningManager:
 
     def add(self, warning_type):
 
-        pass
+        if self.has_warning(warning_type):
+            return
+
+        new_warning = WarningMessage(warning_type)
+        self.warnings.add(new_warning)
+        new_warning.rect.centerx = 630
+        new_warning.rect.y = 200 + len(self.warnings)*30
+
+    def has_warning(self, warning_type):
+
+        return True if warning_type in [x.type for x in self.warnings] else False
 
     def remove(self, warning_type):
 
@@ -362,4 +372,15 @@ class WarningMessage(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.images = []
+        self.images = [pygame.image.load("src/resources/oxygenwarning.png"),
+                       pygame.image.load("src/resources/damagewarning.png"),
+                       pygame.image.load("src/resources/fuelwarning.png")]
+        self.image = self.images[warning_type]
+
+        self.rect = self.image.get_rect()
+
+        self.type = warning_type
+
+    def draw(self, display):
+
+        display.blit(self.image, self.rect.topleft)
