@@ -339,3 +339,27 @@ class Bullet(ObstacleBase):
 
         self.speed = speed
         self.damage_factor = speed
+
+
+class WarningManager:
+
+    def __init__(self):
+
+        self.warnings = pygame.sprite.Group()
+
+    def add(self, warning_type):
+
+        pass
+
+    def remove(self, warning_type):
+
+        pass
+
+
+class WarningMessage(pygame.sprite.Sprite):
+
+    def __init__(self, warning_type):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.images = []
