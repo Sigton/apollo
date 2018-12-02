@@ -264,7 +264,7 @@ class Alien(pygame.sprite.Sprite):
 
 class Explosion(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, lifetime=15):
+    def __init__(self, x, y, lifetime=21):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -285,10 +285,13 @@ class Explosion(pygame.sprite.Sprite):
 
         if self.lifetime == 2:
             self.image = self.images[2]
-        elif self.lifetime in [12, 4]:
+            self.rect = self.image.get_rect()
+        elif self.lifetime in [18, 4]:
             self.image = self.images[1]
-        elif self.lifetime == 9:
+            self.rect = self.image.get_rect()
+        elif self.lifetime == 15:
             self.image = self.images[0]
+            self.rect = self.image.get_rect()
         self.rect.center = self.center
 
         if self.lifetime <= 0:
