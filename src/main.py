@@ -61,7 +61,7 @@ class Main:
         self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
-        self.highscore = 137864
+        self.highscore = 0
 
         self.speed_ranges = [range(10, 15),
                              range(7, 12),
@@ -103,6 +103,7 @@ class Main:
         moving = 0
         debris_delay = 120
         spawn_intervals = 120
+        diff_interval = 3
 
         while not game_exit:
 
@@ -168,8 +169,14 @@ class Main:
                 else:
                     self.create_debris(random.randint(300, 935), -75)
                     debris_delay = spawn_intervals
-                    if spawn_intervals > 10:
-                        spawn_intervals -= 1
+                    diff_interval -= 1
+                    if diff_interval == 0:
+                        if spawn_intervals > 10:
+                            spawn_intervals -= 3
+                        self.obstacle_selection_prob += [random.randint(0, 2)]
+                        s = random.randint(0, 1)
+                        self.speed_ranges[s] = range(self.speed_ranges[s][0]+1, self.speed_ranges[s][-1]+2)
+                        diff_interval = 3
 
             self.backgrounds.update()
             self.rocket.update()
