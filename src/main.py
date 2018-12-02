@@ -223,11 +223,11 @@ class Main:
                     diff_interval -= 1
                     if diff_interval == 0:
                         if self.spawn_intervals > 10:
-                            self.spawn_intervals -= 3
+                            self.spawn_intervals -= 7
                         self.obstacle_selection_prob += [random.randint(0, 2)]
                         s = random.randint(0, 1)
                         self.speed_ranges[s] = range(self.speed_ranges[s][0]+1, self.speed_ranges[s][-1]+2)
-                        diff_interval = 3
+                        diff_interval = 5
 
             self.backgrounds.update()
             self.rocket.update()
