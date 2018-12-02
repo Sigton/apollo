@@ -53,6 +53,7 @@ class Main:
 
         self.play_click = 0
 
+        self.obstacle_selection_prob = [0, 0, 0, 1, 1]
         self.obstacle_classes = [sprites.Debris, sprites.Meteor, sprites.Alien]
 
         self.score = 0
@@ -233,7 +234,7 @@ class Main:
 
     def create_debris(self, x, y):
 
-        sprite = random.randint(0, len(self.obstacle_classes)-1)
+        sprite = random.choice(self.obstacle_selection_prob)
         self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
 
     def create_explosion(self, x, y):
