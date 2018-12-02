@@ -139,7 +139,7 @@ class Main:
         game_exit = False
         flicker_pos = 0
         moving = 0
-        debris_delay = 120
+        debris_delay = 180
         diff_interval = 3
 
         while not game_exit:
