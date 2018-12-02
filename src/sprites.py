@@ -47,7 +47,7 @@ class Rocket(pygame.sprite.Sprite):
         self.fuel -= abs(self.xv)/140
         if self.leaking_o2:
             self.max_speed = 14-(0.07*self.damage)
-            self.oxygen -= self.damage/1200
+            self.oxygen -= self.damage/1300
 
         if self.fuel < 0:
             self.fuel = 0
