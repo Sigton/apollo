@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 class Rocket(pygame.sprite.Sprite):
@@ -193,7 +194,8 @@ class Meteor(ObstacleBase):
 
         ObstacleBase.__init__(self)
 
-        self.image = pygame.image.load("src/resources/meteor.png").convert_alpha()
+        self.image = random.choice([pygame.image.load("src/resources/meteor.png").convert_alpha(),
+                                    pygame.image.load("src/resources/meteor1.png").convert_alpha()])
 
         self.rect = self.image.get_rect()
         self.rect.x = x
