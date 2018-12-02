@@ -5,7 +5,8 @@ executables = [cx_Freeze.Executable(script="src/main.py",
 
 include_files = ["src"]
 
-packages = ["pygame"]
+packages = ["pygame",
+            "json"]
 
 excludes = ["tkinter",
             "numpy",

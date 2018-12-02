@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 
 import random
+import json
 
 from src import text
 from src import sprites
