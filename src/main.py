@@ -118,7 +118,7 @@ class Main:
                 self.rocket.rect.y += 2
                 self.rocket_move_vertical_counter -= 1
 
-            if self.rocket.damage >= 100 or self.rocket.fuel <= 0:
+            if self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0:
                 # DIE
                 pass
             else:
