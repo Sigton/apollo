@@ -86,15 +86,29 @@ class Rocket(pygame.sprite.Sprite):
 
 class Flame:
 
-    def __init__(self, x, y, alien=False):
+    def __init__(self, x, y, alien=False, mini=False, right=False):
 
-        self.images = [
-            pygame.image.load("src/resources/flame1.png"),
-            pygame.image.load("src/resources/flame2.png")
-        ] if not alien else [
-            pygame.image.load("src/resources/flame3.png"),
-            pygame.image.load("src/resources/flame4.png")
-        ]
+        if alien:
+            self.images = [
+                pygame.image.load("src/resources/flame3.png"),
+                pygame.image.load("src/resources/flame4.png")
+            ]
+        elif mini:
+            if right:
+                self.images = [
+                    pygame.image.load("src/resources/miniflame3.png"),
+                    pygame.image.load("src/resources/miniflame4.png")
+                ]
+            else:
+                self.images = [
+                    pygame.image.load("src/resources/miniflame1.png"),
+                    pygame.image.load("src/resources/miniflame2.png")
+                ]
+        else:
+            self.images = [
+                pygame.image.load("src/resources/flame1.png"),
+                pygame.image.load("src/resources/flame2.png")
+            ]
 
         self.image = self.images[0]
         self.current_image = 0
