@@ -33,7 +33,7 @@ class Main:
 
         self.clock = pygame.time.Clock()
 
-        self.rocket = sprites.Rocket(615, -106)
+        self.rocket = sprites.Rocket(self, 615, -106)
         self.obstacles = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
         self.backgrounds = pygame.sprite.Group()
@@ -126,8 +126,7 @@ class Main:
                 self.rocket_move_vertical_counter -= 1
 
             if self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0:
-                self.rocket_move_vertical_counter = 480
-                self.rocket.xv = 0
+                self.rocket_move_vertical_counter = 345
                 can_spawn = False
             else:
                 if can_spawn:
@@ -260,6 +259,10 @@ class Main:
     def create_explosion(self, x, y):
 
         self.explosions.add(sprites.Explosion(x, y))
+
+    def reset(self):
+
+        pass
 
 
 if __name__ == "__main__":

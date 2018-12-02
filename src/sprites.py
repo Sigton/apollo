@@ -3,11 +3,15 @@ import pygame
 
 class Rocket(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, master, x, y):
 
         pygame.sprite.Sprite.__init__(self)
 
+        self.master = master
+
         self.xv = 0
+
+        self.startx = x
 
         self.image = pygame.image.load("src/resources/rocket.png")
         self.rect = self.image.get_rect()
@@ -48,6 +52,7 @@ class Rocket(pygame.sprite.Sprite):
 
         if self.rect.top > 720:
             self.rect.bottom = -30
+            self.reset()
 
     def move_left(self):
 
@@ -56,6 +61,16 @@ class Rocket(pygame.sprite.Sprite):
     def move_right(self):
 
         self.xv += .5
+
+    def reset(self):
+        self.rect.x = self.startx
+        self.xv = 0
+        self.fuel = 100
+        self.damage = 0
+        self.oxygen = 100
+        self.leaking_o2 = False
+        self.max_speed = 14
+        self.master.reset()
 
     def draw(self, display):
         display.blit(self.image, self.rect.topleft)
