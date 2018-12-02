@@ -219,7 +219,7 @@ class Main:
             sprite_hit = pygame.sprite.spritecollide(self.rocket, self.obstacles, False)
             for hit in sprite_hit:
 
-                if self.rocket.rect.centery < hit.rect.bottom:
+                if self.rocket.rect.bottom < hit.rect.bottom:
                     continue
 
                 hit.kill()
