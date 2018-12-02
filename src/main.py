@@ -157,7 +157,7 @@ class Main:
             for hit in sprite_hit:
                 self.create_explosion(hit.rect.centerx, hit.rect.bottom)
                 self.rocket.damage += hit.damage_factor
-                self.add_to_queue(">>> {} damage taken.".format(hit.damage_factor))
+                self.add_to_queue(">>> {} damage taken.".format(int(hit.damage_factor)))
                 if not self.rocket.leaking_o2:
                     self.rocket.leaking_o2 = True
 
