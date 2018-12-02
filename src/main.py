@@ -127,15 +127,18 @@ class Main:
 
                         elif event.key in (K_LEFT, K_a):
                             moving = -1
+                            self.rocket.show_mini = 1
                         elif event.key in (K_RIGHT, K_d):
                             moving = 1
+                            self.rocket.show_mini = -1
 
                 if event.type == KEYUP:
                     if event.key in (K_LEFT, K_a) and not moving == 1:
                         moving = 0
+                        self.rocket.show_mini = 0
                     elif event.key in (K_RIGHT, K_d) and not moving == -1:
                         moving = 0
-
+                        self.rocket.show_mini = 0
             if self.rocket_move_vertical_counter > 0:
                 self.rocket.rect.y += 2
                 self.rocket_move_vertical_counter -= 1

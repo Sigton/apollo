@@ -21,7 +21,7 @@ class Rocket(pygame.sprite.Sprite):
         self.flame = Flame(x, y+100)
 
         self.mini_flame_left = Flame(x-10, y+45, False, True, False)
-        self.mini_flame_right = Flame(x+40, y+45, False, True, True)
+        self.mini_flame_right = Flame(x+20, y+45, False, True, True)
 
         self.show_mini = 0
 
@@ -59,7 +59,7 @@ class Rocket(pygame.sprite.Sprite):
 
         if self.show_mini > 0:
             self.mini_flame_right.update()
-            self.mini_flame_right.rect.topleft = (self.rect.x + 40, self.rect.y + 45)
+            self.mini_flame_right.rect.topleft = (self.rect.x + 20, self.rect.y + 45)
         elif self.show_mini < 0:
             self.mini_flame_left.update()
             self.mini_flame_left.rect.topleft = (self.rect.x - 10, self.rect.y + 45)
