@@ -126,13 +126,15 @@ class Main:
                 self.rocket_move_vertical_counter -= 1
 
             if self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0:
-                # DIE
-                pass
+                self.rocket_move_vertical_counter = 480
+                self.rocket.xv = 0
+                can_spawn = False
             else:
-                if moving == -1:
-                    self.rocket.move_left()
-                if moving == 1:
-                    self.rocket.move_right()
+                if can_spawn:
+                    if moving == -1:
+                        self.rocket.move_left()
+                    if moving == 1:
+                        self.rocket.move_right()
 
             self.update_hud()
 

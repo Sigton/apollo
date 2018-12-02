@@ -46,6 +46,9 @@ class Rocket(pygame.sprite.Sprite):
         if self.rect.left > 960:
             self.rect.right = 300
 
+        if self.rect.top > 720:
+            self.rect.bottom = -30
+
     def move_left(self):
 
         self.xv -= .5
