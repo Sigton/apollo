@@ -64,6 +64,7 @@ class Main:
         self.rocket_move_vertical_counter = 328
 
         self.fuel_threshold = 90
+        self.oxygen_threshold = 90
 
     def run(self):
 
@@ -178,6 +179,8 @@ class Main:
                 '#' * int(self.rocket.fuel * 0.15) + '-' * (15 - int(self.rocket.fuel * 0.15))))
             self.text_engine.text_surfs[4].set_text(">  Damage  |{}|".format(
                 '#' * int(self.rocket.damage * 0.15) + '-' * (15 - int(self.rocket.damage * 0.15))))
+            self.text_engine.text_surfs[5].set_text(">  Oxygen  |{}|".format(
+                '#' * int(self.rocket.oxygen * 0.15) + '-' * (15 - int(self.rocket.oxygen* 0.15))))
 
             str_score = str(self.score)
             while len(str(str_score)) < 15:
@@ -188,6 +191,10 @@ class Main:
         if self.rocket.fuel < self.fuel_threshold:
             self.add_to_queue(">>> Fuel at {}%.".format(self.fuel_threshold))
             self.fuel_threshold -= 10
+
+        if self.rocket.oxygen < self.oxygen_threshold:
+            self.add_to_queue(">>> Oxygen at {}%.".format(self.oxygen_threshold))
+            self.oxygen_threshold -= 10
 
         self.write()
 
