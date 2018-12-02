@@ -1,6 +1,7 @@
 import cx_Freeze
 
 executables = [cx_Freeze.Executable(script="src/main.py",
+                                    icon="src/resources/icon.ico",
                                     targetName="Space Game.exe")]
 
 include_files = ["src"]
