@@ -89,6 +89,7 @@ class Main:
         flicker_pos = 0
         moving = 0
         debris_delay = 60
+        spawn_intervals = 120
 
         while not game_exit:
 
@@ -137,7 +138,9 @@ class Main:
                     debris_delay -= 1
                 else:
                     self.create_debris(random.randint(300, 935), -75)
-                    debris_delay = 120
+                    debris_delay = spawn_intervals
+                    if spawn_intervals > 10:
+                        spawn_intervals -= 1
 
             self.backgrounds.update()
             self.rocket.update()
