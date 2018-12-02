@@ -190,6 +190,7 @@ class Main:
 
             if (self.rocket.damage >= 100 or self.rocket.fuel <= 0 or self.rocket.oxygen <= 0) and self.can_spawn:
                 self.rocket_move_vertical_counter = 548
+                self.rocket.xv = random.randint(-14, 14)
                 self.can_spawn = False
                 self.warning_manager.clear()
                 if self.rocket.fuel <= 0:
