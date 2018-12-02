@@ -2,7 +2,7 @@ import cx_Freeze
 
 executables = [cx_Freeze.Executable(script="src/main.py",
                                     icon="src/resources/icon.ico",
-                                    targetName="Space Game.exe")]
+                                    targetName="Apollo.exe")]
 
 include_files = ["src"]
 
@@ -14,7 +14,7 @@ excludes = ["tkinter",
             "OpenGL"]
 
 cx_Freeze.setup(
-    name="Space Game",
+    name="Apollo",
     options={
         "build_exe": {
             "packages": packages,
