@@ -75,6 +75,7 @@ class Main:
         self.add_to_queue(">  Damage  |---------------|")
         self.add_to_queue(">  Oxygen  |###############|")
         self.add_to_queue(">   Score  |000000000000000|")
+        self.add_to_queue("> Highscore|000000000000000|")
         self.add_to_queue("----------------------------")
         self.add_to_queue(">>> Apollo 18 Mission Log")
         self.add_to_queue("----------------------------")
@@ -100,7 +101,7 @@ class Main:
 
                 if event.type == KEYDOWN:
 
-                    if not can_spawn and self.text_engine.get_lines() > 10:
+                    if not can_spawn and self.text_engine.get_lines() > 11:
                         if event.key in (K_LEFT, K_a, K_RIGHT, K_d):
                             can_spawn = True
                             self.add_to_queue(">>> Mission started.")
@@ -178,7 +179,7 @@ class Main:
 
     def update_hud(self):
 
-        if self.text_engine.get_lines() > 7:
+        if self.text_engine.get_lines() > 8:
             self.text_engine.text_surfs[2].set_text("> Velocity |{}#{}|".format(
                 ('-' * (7 - int(abs(self.rocket.xv) // 2))) +
                 ('#' * int(abs(self.rocket.xv) // 2)) if self.rocket.xv < 0 else '-' * 7,
