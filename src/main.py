@@ -47,6 +47,8 @@ class Main:
         self.big_explosion_sound.set_volume(0.5)
         self.whoosh = pygame.mixer.Sound("src/resources/whoosh.wav")
         self.whoosh.set_volume(0.6)
+        self.whoosh2 = pygame.mixer.Sound("src/resources/whoosh2.wav")
+        self.whoosh2.set_volume(0.3)
 
         self.clock = pygame.time.Clock()
 
@@ -342,6 +344,7 @@ class Main:
 
         sprite = random.choice(self.obstacle_selection_prob)
         self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
+        self.whoosh2.play()
 
     def create_explosion(self, x, y):
 
