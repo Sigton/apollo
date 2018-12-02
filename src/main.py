@@ -36,6 +36,8 @@ class Main:
         self.small_explosion_sound.set_volume(0.4)
         self.beep_sound = pygame.mixer.Sound("src/resources/beep.wav")
         self.beep_sound.set_volume(0.5)
+        self.big_explosion_sound = pygame.mixer.Sound("src/resources/explosion2.wav")
+        self.big_explosion_sound.set_volume(0.5)
 
         self.clock = pygame.time.Clock()
 
@@ -336,6 +338,7 @@ class Main:
         self.create_explosion(self.rocket.rect.x+10, self.rocket.rect.y+50)
         self.create_explosion(self.rocket.rect.x+30, self.rocket.rect.y+80)
         self.create_explosion(self.rocket.rect.x-5, self.rocket.rect.y+110)
+        self.big_explosion_sound.play()
 
     def reset(self):
 
