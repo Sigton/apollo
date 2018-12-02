@@ -53,6 +53,8 @@ class Main:
         self.blip.set_volume(0.5)
         self.random1 = pygame.mixer.Sound("src/resources/random1.wav")
         self.random1.set_volume(0.7)
+        self.alien_sound = pygame.mixer.Sound("src/resources/alien.wav")
+        self.alien_sound.set_volume(0.4)
 
         self.clock = pygame.time.Clock()
 
@@ -356,6 +358,7 @@ class Main:
                                                              abs(direction), direction))
         else:
             self.obstacles.add(self.obstacle_classes[sprite](x, y, random.choice(self.speed_ranges[sprite])))
+            self.alien_sound.play()
 
         self.whoosh2.play()
 

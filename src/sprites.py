@@ -229,8 +229,6 @@ class Meteor(ObstacleBase):
 
         self.direction = direction
 
-        print(speed, diagonal, direction)
-
 
 class Alien(pygame.sprite.Sprite):
 
