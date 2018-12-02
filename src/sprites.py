@@ -142,7 +142,7 @@ class Meteor(ObstacleBase):
 
 class Alien(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, speed=10):
+    def __init__(self, x, y, speed=1):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -156,7 +156,7 @@ class Alien(pygame.sprite.Sprite):
         self.flame = Flame(x+30, y-20, True)
 
         self.speed = speed
-        self.damage_factor = speed*2.4
+        self.damage_factor = 10
 
         self.x_move = 120
         self.x_move_counter = self.x_move//2
