@@ -22,18 +22,21 @@ class Rocket(pygame.sprite.Sprite):
 
         self.leaking_o2 = False
 
+        self.max_speed = 14
+
     def update(self):
         self.flame.update()
 
         self.rect.x += self.xv
 
-        if self.xv > 14:
-            self.xv = 14
-        if self.xv < -14:
-            self.xv = -14
+        if self.xv > self.max_speed:
+            self.xv = self.max_speed
+        if self.xv < -self.max_speed:
+            self.xv = -self.max_speed
 
         self.fuel -= abs(self.xv)/200
         if self.leaking_o2:
+            self.max_speed = 14-(0.07*self.damage)
             self.oxygen -= self.damage/500
 
         self.flame.rect.topleft = (self.rect.x, self.rect.y+100)
