@@ -159,6 +159,7 @@ class Main:
                             elif event.key == K_RETURN:
                                 self.add_to_queue(">>> A/D or LEFT/RIGHT to move.")
                                 self.add_to_queue(">>> Dodge obstacles but conserve fuel.")
+                                self.add_to_queue(">>> Taking damage will leak oxygen.")
                                 self.add_to_queue(">>> Good luck. Mission started.")
                                 self.can_spawn = True
                                 self.beep_sound.play()
